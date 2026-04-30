@@ -1,10 +1,7 @@
 {
   "version": 2,
-  "builds": [
-    { "src": "api/photos.js", "use": "@vercel/node" }
-  ],
-  "routes": [
-    { "src": "/api/photos", "dest": "/api/photos.js" },
-    { "src": "/(.*)", "dest": "/index.html" }
+  "rewrites": [
+    { "source": "/api/photos", "destination": "/api/photos.js" },
+    { "source": "/((?!api/).*)", "destination": "/index.html" }
   ]
 }
