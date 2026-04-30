@@ -15,10 +15,8 @@ module.exports = async function(req, res) {
 
   try {
     const auth = Buffer.from(apiKey + ':' + apiSecret).toString('base64');
-
-    // Only fetch photos from the "daria" folder using prefix filter
-    const url = 'https://api.cloudinary.com/v1_1/' + cloudName +
-                '/resources/image?prefix=daria/&type=upload&max_results=500';
+    const url  = 'https://api.cloudinary.com/v1_1/' + cloudName +
+                 '/resources/image?max_results=500&type=upload';
 
     const raw = await new Promise(function(resolve, reject) {
       https.get(url, { headers: { 'Authorization': 'Basic ' + auth } }, function(r) {
@@ -30,10 +28,9 @@ module.exports = async function(req, res) {
     });
 
     const data = JSON.parse(raw);
-    const resources = (data.resources || [])
-      .sort(function(a, b) {
-        return new Date(b.created_at) - new Date(a.created_at);
-      });
+    const resources = (data.resources || []).sort(function(a, b) {
+      return new Date(b.created_at) - new Date(a.created_at);
+    });
 
     const photos = resources.map(function(img) {
       const d     = new Date(img.created_at);
