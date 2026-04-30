@@ -515,29 +515,11 @@ var shownCount = 0;
 
 async function loadPhotos() {
   try {
-    // Cloudinary: fetch all photos from "daria" folder, newest first
-    var cloudName = 'db1xhoyrs';
-    var url = 'https://res.cloudinary.com/' + cloudName + '/image/list/daria.json';
-    var r = await fetch(url);
+    // Vercel API calls Cloudinary — auto-detects all photos in "daria" folder
+    var r = await fetch('/api/photos');
     if (!r.ok) throw 0;
-    var data = await r.json();
-    var resources = data.resources || [];
-    // Sort newest first
-    resources.sort(function(a, b) {
-      return new Date(b.created_at) - new Date(a.created_at);
-    });
-    PHOTOS = resources.map(function(img) {
-      var d = new Date(img.created_at);
-      var month = d.toLocaleString('en', { month: 'short' });
-      var year = d.getFullYear();
-      return {
-        file: 'https://res.cloudinary.com/' + cloudName + '/image/upload/q_auto,f_auto,w_1200/' + img.public_id + '.' + img.format,
-        thumb: 'https://res.cloudinary.com/' + cloudName + '/image/upload/q_auto,f_auto,w_600/' + img.public_id + '.' + img.format,
-        hero: 'https://res.cloudinary.com/' + cloudName + '/image/upload/q_auto,f_auto,w_400/' + img.public_id + '.' + img.format,
-        full: 'https://res.cloudinary.com/' + cloudName + '/image/upload/q_auto,f_auto,w_1600/' + img.public_id + '.' + img.format,
-        date: month + ' ' + year
-      };
-    });
+    PHOTOS = await r.json();
+    if (!Array.isArray(PHOTOS)) throw 0;
   } catch(_) {
     PHOTOS = [];
   }
