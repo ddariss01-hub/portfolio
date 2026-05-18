@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Upload Photos — Daria Shevchenko</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;1,300&family=Jost:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+:root{--brown:#A0522D;--brown-dark:#7A3B1E;--brown-light:#C4733A;--cream:#FFF8F0;--bisque:#FFE4C4;--text-mid:#7A5C45;--white:#fff;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Jost',sans-serif;background:var(--cream);color:var(--brown-dark);min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:4rem 1.5rem;}
+h1{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;font-size:2.2rem;letter-spacing:.04em;margin-bottom:.4rem;}
+.sub{font-size:.78rem;letter-spacing:.15em;text-transform:uppercase;color:var(--text-mid);margin-bottom:3rem;}
+
+/* password screen */
+#pwScreen{display:flex;flex-direction:column;align-items:center;gap:1rem;width:100%;max-width:340px;}
+#pwScreen input{width:100%;border:1px solid rgba(160,82,45,.35);background:var(--white);padding:.75rem 1.1rem;font-family:'Jost',sans-serif;font-size:.88rem;color:var(--brown-dark);outline:none;}
+#pwScreen input:focus{border-color:var(--brown);}
+#pwScreen button{width:100%;background:var(--brown-dark);color:var(--white);border:none;padding:.8rem;font-family:'Jost',sans-serif;font-size:.75rem;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;transition:background .3s;}
+#pwScreen button:hover{background:var(--brown);}
+.pw-err{font-size:.75rem;color:#c0392b;letter-spacing:.05em;}
+
+/* upload area */
+#uploadUI{display:none;width:100%;max-width:680px;}
+#dropZone{
+  border:1.5px dashed rgba(160,82,45,.4);background:var(--white);
+  border-radius:2px;padding:3.5rem 2rem;text-align:center;
+  cursor:pointer;transition:border-color .3s,background .3s;
+  margin-bottom:2rem;
+}
+#dropZone.over{border-color:var(--brown);background:var(--bisque);}
+#dropZone p{font-size:.85rem;font-weight:300;color:var(--text-mid);line-height:1.8;}
+#dropZone strong{display:block;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.4rem;font-weight:300;color:var(--brown-dark);margin-bottom:.5rem;}
+#fileInput{display:none;}
+
+/* queue */
+#queue{display:flex;flex-direction:column;gap:.75rem;}
+.q-item{background:var(--white);border:1px solid rgba(160,82,45,.12);padding:.9rem 1.1rem;display:grid;grid-template-columns:1fr auto;align-items:center;gap:.8rem;}
+.q-name{font-size:.8rem;font-weight:300;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.q-size{font-size:.7rem;color:var(--text-mid);white-space:nowrap;}
+.q-bar-wrap{grid-column:1/-1;height:2px;background:rgba(160,82,45,.12);border-radius:1px;overflow:hidden;}
+.q-bar{height:100%;width:0%;background:var(--brown);transition:width .2s;}
+.q-status{font-size:.72rem;letter-spacing:.08em;white-space:nowrap;}
+.q-status.done{color:#27ae60;}
+.q-status.err{color:#c0392b;}
+.q-status.compressing{color:var(--brown-light);}
+</style>
+</head>
+<body>
+
+<h1>Upload Photos</h1>
+<p class="sub">Daria Shevchenko · Admin</p>
+
+<!-- PASSWORD -->
+<div id="pwScreen">
+  <input type="password" id="pwInput" placeholder="Password" onkeydown="if(event.key==='Enter')checkPw()">
+  <button onclick="checkPw()">Enter</button>
+  <span class="pw-err" id="pwErr"></span>
+</div>
+
+<!-- UPLOAD UI -->
+<div id="uploadUI">
+  <div id="dropZone" onclick="document.getElementById('fileInput').click()"
+       ondragover="onDragOver(event)" ondragleave="onDragLeave(event)" ondrop="onDrop(event)">
+    <strong>Drop photos here</strong>
+    <p>or click to select files<br>
+    <span style="font-size:.72rem;opacity:.6">Photos are compressed automatically — any file size accepted</span></p>
+  </div>
+  <input type="file" id="fileInput" accept="image/*" multiple onchange="addFiles(this.files)">
+  <div id="queue"></div>
+</div>
+
+<script>
+var PW = '';
+
+function checkPw() {
+  var val = document.getElementById('pwInput').value.trim();
+  if (!val) return;
+  fetch('/api/sign-upload?password=' + encodeURIComponent(val))
+    .then(function(r) { return r.json(); })
+    .then(function(d) {
+      if (d.error) {
+        document.getElementById('pwErr').textContent = 'Wrong password.';
+      } else {
+        PW = val;
+        document.getElementById('pwScreen').style.display = 'none';
+        document.getElementById('uploadUI').style.display = 'block';
+      }
+    })
+    .catch(function() {
+      document.getElementById('pwErr').textContent = 'Connection error.';
+    });
+}
+
+function onDragOver(e) { e.preventDefault(); document.getElementById('dropZone').classList.add('over'); }
+function onDragLeave()  { document.getElementById('dropZone').classList.remove('over'); }
+function onDrop(e)      { e.preventDefault(); onDragLeave(); addFiles(e.dataTransfer.files); }
+
+function addFiles(files) {
+  Array.from(files).forEach(function(f) {
+    if (!f.type.startsWith('image/')) return;
+    var item = createQueueItem(f.name, f.size);
+    compressAndUpload(f, item);
+  });
+}
+
+function createQueueItem(name, size) {
+  var div = document.createElement('div');
+  div.className = 'q-item';
+  div.innerHTML =
+    '<span class="q-name">' + escHtml(name) + '</span>' +
+    '<span class="q-status compressing" id="st_' + qId + '">Compressing…</span>' +
+    '<span class="q-size">' + fmtSize(size) + '</span>' +
+    '<div class="q-bar-wrap"><div class="q-bar" id="bar_' + qId + '"></div></div>';
+  document.getElementById('queue').appendChild(div);
+  return qId++;
+}
+
+var qId = 0;
+function fmtSize(b) { return b > 1048576 ? (b/1048576).toFixed(1)+' MB' : (b/1024).toFixed(0)+' KB'; }
+function escHtml(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;'); }
+
+function setStatus(id, text, cls) {
+  var el = document.getElementById('st_' + id);
+  if (el) { el.textContent = text; el.className = 'q-status ' + (cls||''); }
+}
+function setBar(id, pct) {
+  var el = document.getElementById('bar_' + id);
+  if (el) el.style.width = pct + '%';
+}
+
+/* Compress image using Canvas, then upload */
+function compressAndUpload(file, id) {
+  var reader = new FileReader();
+  reader.onload = function(e) {
+    var img = new Image();
+    img.onload = function() {
+      /* Resize to max 3840px on longest side, JPEG q=0.88 */
+      var MAX = 3840;
+      var w = img.width, h = img.height;
+      if (w > MAX || h > MAX) {
+        if (w >= h) { h = Math.round(h * MAX / w); w = MAX; }
+        else        { w = Math.round(w * MAX / h); h = MAX; }
+      }
+      var canvas = document.createElement('canvas');
+      canvas.width = w; canvas.height = h;
+      var ctx = canvas.getContext('2d');
+      ctx.drawImage(img, 0, 0, w, h);
+      canvas.toBlob(function(blob) {
+        setStatus(id, 'Uploading…');
+        uploadToCloudinary(blob, id);
+      }, 'image/jpeg', 0.88);
+    };
+    img.src = e.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+
+function uploadToCloudinary(blob, id) {
+  fetch('/api/sign-upload?password=' + encodeURIComponent(PW))
+    .then(function(r) { return r.json(); })
+    .then(function(sig) {
+      if (sig.error) { setStatus(id, 'Auth error', 'err'); return; }
+
+      var formData = new FormData();
+      formData.append('file', blob, 'photo.jpg');
+      formData.append('api_key',   sig.apiKey);
+      formData.append('timestamp', sig.timestamp);
+      formData.append('signature', sig.signature);
+      formData.append('folder',    sig.folder);
+
+      var xhr = new XMLHttpRequest();
+      xhr.open('POST', 'https://api.cloudinary.com/v1_1/' + sig.cloudName + '/image/upload');
+
+      xhr.upload.onprogress = function(e) {
+        if (e.lengthComputable) setBar(id, Math.round(e.loaded / e.total * 100));
+      };
+      xhr.onload = function() {
+        if (xhr.status === 200) {
+          setBar(id, 100);
+          setStatus(id, 'Done ✓', 'done');
+        } else {
+          setStatus(id, 'Failed', 'err');
+        }
+      };
+      xhr.onerror = function() { setStatus(id, 'Network error', 'err'); };
+      xhr.send(formData);
+    })
+    .catch(function() { setStatus(id, 'Error', 'err'); });
+}
+</script>
+</body>
+</html>
