@@ -224,7 +224,29 @@ footer small{font-size:.68rem;letter-spacing:.1em;color:rgba(255,228,196,.4);}
 @keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-16px)}}
 @keyframes pulse{0%,100%{opacity:.06}50%{opacity:.14}}
 
+/* ── PRICING ── */
+.pricing-section{padding:7rem 2rem 7rem;background:var(--cream);}
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;max-width:1100px;margin:3.5rem auto 0;padding:0 1.5rem;}
+.price-card{background:var(--white);border:1px solid rgba(160,82,45,.14);padding:2.8rem 2.2rem;position:relative;display:flex;flex-direction:column;transition:transform .3s ease,box-shadow .3s ease;}
+.price-card:hover{transform:translateY(-6px);box-shadow:0 20px 50px rgba(58,22,5,.08);}
+.price-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to right,var(--brown-light),var(--brown));}
+.price-name{font-family:'Cormorant Garamond',serif;font-size:1.55rem;font-weight:300;font-style:italic;color:var(--brown-dark);margin-bottom:1.4rem;}
+.price-amount{display:flex;align-items:baseline;gap:.35rem;margin-bottom:.3rem;}
+.price-num{font-family:'Cormorant Garamond',serif;font-size:3.8rem;font-weight:300;color:var(--brown);line-height:1;}
+.price-unit{font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text-mid);}
+.price-divider{height:1px;background:rgba(160,82,45,.1);margin:1.6rem 0;}
+.price-desc{font-size:.85rem;font-weight:200;line-height:1.85;color:var(--text-mid);margin-bottom:1.4rem;}
+.price-feats{list-style:none;display:flex;flex-direction:column;gap:.65rem;margin-bottom:auto;padding:0;}
+.price-feats li{font-size:.82rem;font-weight:300;color:var(--text-mid);padding-left:1.4rem;position:relative;line-height:1.5;}
+.price-feats li::before{content:'—';position:absolute;left:0;color:var(--brown-light);}
+.price-studio{margin-top:1.8rem;padding-top:1.3rem;border-top:1px solid rgba(160,82,45,.1);font-size:.76rem;letter-spacing:.05em;color:var(--brown-light);font-style:italic;}
+.price-cta-link{display:inline-block;margin-top:1.6rem;padding:.7rem 0;border-bottom:1px solid var(--brown);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--brown-dark);text-decoration:none;transition:color .3s,letter-spacing .3s;}
+.price-cta-link:hover{color:var(--brown-light);letter-spacing:.28em;}
+
 /* ── RESPONSIVE ── */
+@media(max-width:900px){
+  .pricing-grid{grid-template-columns:1fr;max-width:440px;margin-left:auto;margin-right:auto;}
+}
 @media(max-width:1000px){
   .hero{grid-template-columns:1fr;}
   .hero-right{min-height:55vh;}
@@ -248,6 +270,7 @@ footer small{font-size:.68rem;letter-spacing:.1em;color:rgba(255,228,196,.4);}
 <div class="nav-mobile-menu" id="mobileMenu">
   <a href="#gallery" onclick="closeMobileMenu()" data-t="nav_portfolio">Portfolio</a>
   <a href="#about"   onclick="closeMobileMenu()" data-t="nav_about">About</a>
+  <a href="#pricing" onclick="closeMobileMenu()" data-t="nav_pricing">Pricing</a>
   <a href="#contact" onclick="closeMobileMenu()" data-t="nav_contact">Contact</a>
   <div class="nav-mobile-lang">
     <button onclick="setLang('en');closeMobileMenu();" id="mlEn">&#127468;&#127463; EN</button>
@@ -263,6 +286,7 @@ footer small{font-size:.68rem;letter-spacing:.1em;color:rgba(255,228,196,.4);}
   <ul class="nav-links">
     <li><a href="#gallery" data-t="nav_portfolio">Portfolio</a></li>
     <li><a href="#about"   data-t="nav_about">About</a></li>
+    <li><a href="#pricing" data-t="nav_pricing">Pricing</a></li>
     <li><a href="#contact" data-t="nav_contact">Contact</a></li>
     <li>
       <div class="lang-wrap" id="langWrap">
@@ -370,6 +394,63 @@ footer small{font-size:.68rem;letter-spacing:.1em;color:rgba(255,228,196,.4);}
   </div>
 </section>
 
+<!-- PRICING -->
+<section id="pricing" class="pricing-section">
+  <div class="sec-head">
+    <span class="sec-tag reveal" data-t="price_tag">Pricing</span>
+    <h2 class="sec-title reveal" style="transition-delay:.15s" data-t="price_title_h">Simple, <em>honest</em> pricing</h2>
+  </div>
+  <div class="stripe reveal" style="transition-delay:.3s"></div>
+  <div class="pricing-grid">
+
+    <!-- Portrait -->
+    <div class="price-card reveal" style="transition-delay:.1s">
+      <div class="price-name" data-t="price_p_name">Portrait</div>
+      <div class="price-amount"><span class="price-num">200</span><span class="price-unit">zł</span></div>
+      <div class="price-divider"></div>
+      <p class="price-desc" data-t="price_p_desc">A personal session focused entirely on you — your expression, your light, your story.</p>
+      <ul class="price-feats" data-t="price_p_feats">
+        <li>1–1.5 hours</li>
+        <li>30–40 edited photos</li>
+        <li>Any outdoor location</li>
+      </ul>
+      <div class="price-studio" data-t="price_studio">+ Studio fee covered by client</div>
+      <a class="price-cta-link" href="#contact" data-t="price_cta">Book a session</a>
+    </div>
+
+    <!-- Love Story -->
+    <div class="price-card reveal" style="transition-delay:.2s">
+      <div class="price-name" data-t="price_ls_name">Love Story</div>
+      <div class="price-amount"><span class="price-num">200</span><span class="price-unit">zł</span></div>
+      <div class="price-divider"></div>
+      <p class="price-desc" data-t="price_ls_desc">A romantic session for couples — natural, emotional, and full of feeling.</p>
+      <ul class="price-feats" data-t="price_ls_feats">
+        <li>1–1.5 hours</li>
+        <li>30–40 edited photos</li>
+        <li>Romantic locations in Warsaw</li>
+      </ul>
+      <div class="price-studio" data-t="price_studio">+ Studio fee covered by client</div>
+      <a class="price-cta-link" href="#contact" data-t="price_cta">Book a session</a>
+    </div>
+
+    <!-- Family -->
+    <div class="price-card reveal" style="transition-delay:.3s">
+      <div class="price-name" data-t="price_fam_name">Family</div>
+      <div class="price-amount"><span class="price-num">200</span><span class="price-unit">zł</span></div>
+      <div class="price-divider"></div>
+      <p class="price-desc" data-t="price_fam_desc">Warm, joyful moments with the people who matter most.</p>
+      <ul class="price-feats" data-t="price_fam_feats">
+        <li>1–1.5 hours</li>
+        <li>30–40 edited photos</li>
+        <li>Outdoor or at your home</li>
+      </ul>
+      <div class="price-studio" data-t="price_studio">+ Studio fee covered by client</div>
+      <a class="price-cta-link" href="#contact" data-t="price_cta">Book a session</a>
+    </div>
+
+  </div>
+</section>
+
 <!-- CONTACT -->
 <section id="contact" class="contact-section">
   <span class="sec-tag reveal" data-t="contact_tag">Let's connect</span>
@@ -435,36 +516,75 @@ var T = {
     about_quote:'\u201CI don\u2019t just take photos \u2014 I preserve feelings.\u201D',
     contact_tag:"Let\u2019s connect", contact_title_h:'Find me <em>here</em>',
     contact_body:"Looking for a photographer who will make you feel comfortable and create images you\u2019ll treasure forever? Reach out on Instagram or Threads.",
+    nav_pricing:'Pricing',
+    price_tag:'Pricing', price_title_h:'Simple, <em>honest</em> pricing',
+    price_p_name:'Portrait',
+    price_p_desc:'A personal session focused entirely on you \u2014 your expression, your light, your story.',
+    price_p_feats:'<li>1\u20131.5 hours</li><li>30\u201340 edited photos</li><li>Any outdoor location</li>',
+    price_ls_name:'Love Story',
+    price_ls_desc:'A romantic session for couples \u2014 natural, emotional, and full of feeling.',
+    price_ls_feats:'<li>1\u20131.5 hours</li><li>30\u201340 edited photos</li><li>Romantic locations in Warsaw</li>',
+    price_fam_name:'Family',
+    price_fam_desc:'Warm, joyful moments with the people who matter most.',
+    price_fam_feats:'<li>1\u20131.5 hours</li><li>30\u201340 edited photos</li><li>Outdoor or at your home</li>',
+    price_studio:'+ Studio fee covered by client',
+    price_cta:'Book a session',
     footer_copy:'All rights reserved'
   },
   uk:{
     nav_portfolio:'\u041f\u043e\u0440\u0442\u0444\u043e\u043b\u0456\u043e', nav_about:'\u041f\u0440\u043e \u043c\u0435\u043d\u0435', nav_contact:'\u041a\u043e\u043d\u0442\u0430\u043a\u0442',
-    hero_eyebrow:'\u0424\u043e\u0442\u043e\u0433\u0440\u0430\u0444\u0456\u044f \u0414\u0430\u0440\u0456\u0457 \u0428\u0435\u0432\u0447\u0435\u043d\u043a\u043e',
+    hero_eyebrow:'\u0424\u043e\u0442\u043e\u0433\u0440\u0430\u0444\u0456\u044f \u0414\u0430\u0440\u2019\u0457 \u0428\u0435\u0432\u0447\u0435\u043d\u043a\u043e',
     hero_title_h:'\u0417\u0431\u0435\u0440\u0456\u0433\u0430\u044e<br><em>\u043c\u043e\u043c\u0435\u043d\u0442\u0438</em><br>\u043d\u0430\u0437\u0430\u0432\u0436\u0434\u0438.',
-    hero_sub:'\u041f\u043e\u0440\u0442\u0440\u0435\u0442\u043d\u0430 \u0442\u0430 \u043b\u0430\u0432-\u0441\u0442\u043e\u0440\u0456 \u0444\u043e\u0442\u043e\u0433\u0440\u0430\u0444\u0456\u044f \u0443 \u0412\u0430\u0440\u0448\u0430\u0432\u0456.',
+    hero_sub:'\u041f\u043e\u0440\u0442\u0440\u0435\u0442\u043d\u0430 \u0442\u0430 \u043b\u0430\u0432-\u0441\u0442\u043e\u0440\u0456 \u0444\u043e\u0442\u043e\u0433\u0440\u0430\u0444\u0456\u044f \u0443 \u0412\u0430\u0440\u0448\u0430\u0432\u0456. \u041a\u043e\u0436\u0435\u043d \u043a\u0430\u0434\u0440 \u0440\u043e\u0437\u043f\u043e\u0432\u0456\u0434\u0430\u0454 \u0456\u0441\u0442\u043e\u0440\u0456\u044e, \u044f\u043a\u0443 \u043c\u043e\u0436\u0435\u0442\u0435 \u043f\u0440\u043e\u0436\u0438\u0442\u0438 \u043b\u0438\u0448\u0435 \u0432\u0438.',
     hero_cta:'\u041f\u0435\u0440\u0435\u0433\u043b\u044f\u043d\u0443\u0442\u0438 \u043f\u043e\u0440\u0442\u0444\u043e\u043b\u0456\u043e', scroll:'\u0413\u043e\u0440\u0442\u0430\u0442\u0438',
     gal_tag:'\u041f\u043e\u0440\u0442\u0444\u043e\u043b\u0456\u043e', gal_title_h:'\u041a\u043e\u043b\u0435\u043a\u0446\u0456\u0457 \u0442\u0430 <em>\u0406\u0441\u0442\u043e\u0440\u0456\u0457</em>', gal_empty:'\u0424\u043e\u0442\u043e\u0433\u0440\u0430\u0444\u0456\u0439 \u043f\u043e\u043a\u0438 \u043d\u0435\u043c\u0430\u0454.',
     show_more:'\u041f\u043e\u043a\u0430\u0437\u0430\u0442\u0438 \u0431\u0456\u043b\u044c\u0448\u0435',
-    about_tag:'\u041f\u0440\u043e \u043c\u0435\u043d\u0435', about_title_h:'\u041c\u0438\u0442\u0435\u0446\u044c<br><em>\u0437\u0430 \u043e\u0431\u2019\u0454\u043a\u0442\u0438\u0432\u043e\u043c</em>',
-    about_body:'\u042f \u0414\u0430\u0440\u0456\u044f \u2014 \u0444\u043e\u0442\u043e\u0433\u0440\u0430\u0444\u0438\u043d\u044f \u0443 \u0412\u0430\u0440\u0448\u0430\u0432\u0456. \u041f\u043e\u0440\u0442\u0440\u0435\u0442\u0438, \u043b\u0430\u0432-\u0441\u0442\u043e\u0440\u0456, \u0441\u0456\u043c\u0435\u0439\u043d\u0456 \u0437\u0439\u043e\u043c\u043a\u0438.',
+    about_tag:'\u041f\u0440\u043e \u043c\u0435\u043d\u0435', about_title_h:'\u041c\u0438\u0441\u0442\u043a\u0438\u043d\u044f<br><em>\u0437\u0430 \u043e\u0431\u2019\u0454\u043a\u0442\u0438\u0432\u043e\u043c</em>',
+    about_body:'\u042f \u0414\u0430\u0440\u2019\u044f \u2014 \u0444\u043e\u0442\u043e\u0433\u0440\u0430\u0444\u0438\u043d\u044f \u0443 \u0412\u0430\u0440\u0448\u0430\u0432\u0456 \u0456\u0437 \u043f\u0440\u0438\u0441\u0442\u0440\u0430\u0441\u0442\u044e \u0434\u043e \u0449\u0438\u0440\u0438\u0445 \u0435\u043c\u043e\u0446\u0456\u0439 \u0442\u0430 \u0441\u043f\u0440\u0430\u0432\u0436\u043d\u044c\u043e\u0457 \u043a\u0440\u0430\u0441\u0438. \u041c\u043e\u044f \u0440\u043e\u0431\u043e\u0442\u0430 \u043e\u0445\u043e\u043f\u043b\u044e\u0454 \u0456\u043d\u0442\u0438\u043c\u043d\u0456 \u043f\u043e\u0440\u0442\u0440\u0435\u0442\u0438, \u043b\u0430\u0432-\u0441\u0442\u043e\u0440\u0456 \u0442\u0430 \u0441\u0456\u043c\u0435\u0439\u043d\u0456 \u0437\u043d\u0456\u043c\u043a\u0438.',
     about_quote:'\u00ab\u042f \u043d\u0435 \u043f\u0440\u043e\u0441\u0442\u043e \u0440\u043e\u0431\u043b\u044e \u0444\u043e\u0442\u043e \u2014 \u044f \u0437\u0431\u0435\u0440\u0456\u0433\u0430\u044e \u043f\u043e\u0447\u0443\u0442\u0442\u044f.\u00bb',
-    contact_tag:"\u0417\u0432'\u044f\u0436\u0456\u0442\u044c\u0441\u044f \u0437\u0456 \u043c\u043d\u043e\u044e", contact_title_h:'\u0417\u043d\u0430\u0439\u0434\u0456\u0442\u044c \u043c\u0435\u043d\u0435 <em>\u0442\u0443\u0442</em>',
-    contact_body:'\u041d\u0430\u043f\u0438\u0448\u0456\u0442\u044c \u0432 Instagram \u0430\u0431\u043e Threads.',
+    contact_tag:'\u0417\u0432\u2019\u044f\u0436\u0456\u0442\u044c\u0441\u044f \u0437\u0456 \u043c\u043d\u043e\u044e', contact_title_h:'\u0417\u043d\u0430\u0439\u0434\u0456\u0442\u044c \u043c\u0435\u043d\u0435 <em>\u0442\u0443\u0442</em>',
+    contact_body:'\u0428\u0443\u043a\u0430\u0454\u0442\u0435 \u0444\u043e\u0442\u043e\u0433\u0440\u0430\u0444\u0430, \u044f\u043a\u0438\u0439 \u0434\u043e\u043f\u043e\u043c\u043e\u0436\u0435 \u0432\u0430\u043c \u0432\u0456\u0434\u0447\u0443\u0442\u0438 \u0441\u0435\u0431\u0435 \u043a\u043e\u043c\u0444\u043e\u0440\u0442\u043d\u043e \u0442\u0430 \u0441\u0442\u0432\u043e\u0440\u0438\u0442\u044c \u0437\u043d\u0456\u043c\u043a\u0438, \u044f\u043a\u0456 \u0432\u0438 \u0431\u0443\u0434\u0435\u0442\u0435 \u0431\u0435\u0440\u0435\u0433\u0442\u0438 \u0432\u0456\u0447\u043d\u043e? \u041f\u0438\u0448\u0456\u0442\u044c \u0432 Instagram \u0430\u0431\u043e Threads.',
+    nav_pricing:'\u0426\u0456\u043d\u0438',
+    price_tag:'\u0426\u0456\u043d\u0438', price_title_h:'\u041f\u0440\u043e\u0437\u043e\u0440\u043e \u0442\u0430 <em>\u0447\u0435\u0441\u043d\u043e</em>',
+    price_p_name:'\u041f\u043e\u0440\u0442\u0440\u0435\u0442',
+    price_p_desc:'\u041e\u0441\u043e\u0431\u0438\u0441\u0442\u0456\u0441\u043d\u0430 \u0437\u0439\u043e\u043c\u043a\u0430 \u2014 \u0432\u0430\u0448 \u043e\u0431\u0440\u0430\u0437, \u0432\u0430\u0448\u0435 \u0441\u0432\u0456\u0442\u043b\u043e, \u0432\u0430\u0448\u0430 \u0456\u0441\u0442\u043e\u0440\u0456\u044f.',
+    price_p_feats:'<li>1\u20131,5 \u0433\u043e\u0434</li><li>30\u201340 \u043e\u0431\u0440\u043e\u0431\u043b\u0435\u043d\u0438\u0445 \u0444\u043e\u0442\u043e</li><li>\u0411\u0443\u0434\u044c-\u044f\u043a\u0430 \u043b\u043e\u043a\u0430\u0446\u0456\u044f</li>',
+    price_ls_name:'\u041b\u0430\u0432-\u0441\u0442\u043e\u0440\u0456',
+    price_ls_desc:'\u0420\u043e\u043c\u0430\u043d\u0442\u0438\u0447\u043d\u0430 \u0437\u0439\u043e\u043c\u043a\u0430 \u0434\u043b\u044f \u0437\u0430\u043a\u043e\u0445\u0430\u043d\u0438\u0445 \u2014 \u043f\u0440\u0438\u0440\u043e\u0434\u043d\u0430, \u0435\u043c\u043e\u0446\u0456\u0439\u043d\u0430 \u0442\u0430 \u0449\u0438\u0440\u0430.',
+    price_ls_feats:'<li>1\u20131,5 \u0433\u043e\u0434</li><li>30\u201340 \u043e\u0431\u0440\u043e\u0431\u043b\u0435\u043d\u0438\u0445 \u0444\u043e\u0442\u043e</li><li>\u0420\u043e\u043c\u0430\u043d\u0442\u0438\u0447\u043d\u0456 \u043b\u043e\u043a\u0430\u0446\u0456\u0457 \u0443 \u0412\u0430\u0440\u0448\u0430\u0432\u0456</li>',
+    price_fam_name:'\u0421\u0456\u043c\u0435\u0439\u043d\u0430 \u0437\u0439\u043e\u043c\u043a\u0430',
+    price_fam_desc:'\u0422\u0435\u043f\u043b\u0456, \u0440\u0430\u0434\u0456\u0441\u043d\u0456 \u043c\u043e\u043c\u0435\u043d\u0442\u0438 \u0437 \u043d\u0430\u0439\u0440\u0456\u0434\u043d\u0456\u0448\u0438\u043c\u0438 \u043b\u044e\u0434\u044c\u043c\u0438.',
+    price_fam_feats:'<li>1\u20131,5 \u0433\u043e\u0434</li><li>30\u201340 \u043e\u0431\u0440\u043e\u0431\u043b\u0435\u043d\u0438\u0445 \u0444\u043e\u0442\u043e</li><li>\u041d\u0430 \u0432\u0443\u043b\u0438\u0446\u0456 \u0430\u0431\u043e \u0432\u0434\u043e\u043c\u0430</li>',
+    price_studio:'+ \u0412\u0430\u0440\u0442\u0456\u0441\u0442\u044c \u0441\u0442\u0443\u0434\u0456\u0457 \u043e\u043f\u043b\u0430\u0447\u0443\u0454 \u043a\u043b\u0456\u0454\u043d\u0442',
+    price_cta:'\u0417\u0430\u043f\u0438\u0441\u0430\u0442\u0438\u0441\u044c',
     footer_copy:'\u0423\u0441\u0456 \u043f\u0440\u0430\u0432\u0430 \u0437\u0430\u0445\u0438\u0449\u0435\u043d\u0456'
   },
   pl:{
     nav_portfolio:'Portfolio', nav_about:'O mnie', nav_contact:'Kontakt',
     hero_eyebrow:'Fotografia Darii Shevchenko',
     hero_title_h:'Uwieczniam<br><em>chwile</em><br>na zawsze.',
-    hero_sub:'Fotografia portretowa i love story w Warszawie.',
+    hero_sub:'Fotografia portretowa i love story w Warszawie. Każdy kadr opowiada historię, którą możesz przeżyć tylko Ty.',
     hero_cta:'Zobacz portfolio', scroll:'Przew\u0069\u0144',
     gal_tag:'Portfolio', gal_title_h:'Kolekcje i <em>Historie</em>', gal_empty:'Brak zdj\u0119\u0107.',
     show_more:'Poka\u017c wi\u0119cej',
     about_tag:'O mnie', about_title_h:'Artystka<br><em>za obiektywem</em>',
-    about_body:'Jestem Daria \u2014 fotografka z Warszawy. Portrety, love story, sesje rodzinne.',
+    about_body:'Jestem Daria \u2014 fotografka z Warszawy z pasj\u0105 do uchwycenia prawdziwych emocji i autentycznego pi\u0119kna. Moja praca obejmuje intymne portrety, sesje love story i zdj\u0119cia rodzinne.',
     about_quote:'\u201eNie tylko robi\u0119 zdj\u0119cia \u2014 zachowuj\u0119 uczucia.\u201d',
     contact_tag:'Po\u0142\u0105czmy si\u0119', contact_title_h:'Znajd\u017a mnie <em>tutaj</em>',
-    contact_body:'Napisz na Instagram lub Threads.',
+    contact_body:'Szukasz fotografki, która pomoże Ci poczuć się swobodnie i stworzy zdjęcia, które będziesz cenić na zawsze? Napisz na Instagram lub Threads.',
+    nav_pricing:'Cennik',
+    price_tag:'Cennik', price_title_h:'Prosty, <em>uczciwy</em> cennik',
+    price_p_name:'Portret',
+    price_p_desc:'Sesja skupiona wy\u0142\u0105cznie na Tobie \u2014 Tw\u00f3j wyraz, Twoje \u015bwiat\u0142o, Twoja historia.',
+    price_p_feats:'<li>1\u20131,5 godz.</li><li>30\u201340 zdj\u0119\u0107 po edycji</li><li>Dowolna lokalizacja plenerowa</li>',
+    price_ls_name:'Love Story',
+    price_ls_desc:'Romantyczna sesja dla par \u2014 naturalna, emocjonalna i pe\u0142na uczu\u0107.',
+    price_ls_feats:'<li>1\u20131,5 godz.</li><li>30\u201340 zdj\u0119\u0107 po edycji</li><li>Romantyczne miejsca w Warszawie</li>',
+    price_fam_name:'Sesja rodzinna',
+    price_fam_desc:'Ciep\u0142e, rado\u015bne chwile z najbli\u017cszymi.',
+    price_fam_feats:'<li>1\u20131,5 godz.</li><li>30\u201340 zdj\u0119\u0107 po edycji</li><li>Plener lub u Ciebie w domu</li>',
+    price_studio:'+ Koszt studia pokrywa klient',
+    price_cta:'Um\u00f3w sesj\u0119',
     footer_copy:'Wszelkie prawa zastrze\u017cone'
   }
 };

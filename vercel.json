@@ -1,7 +1,8 @@
 {
   "version": 2,
   "rewrites": [
-    { "source": "/api/photos", "destination": "/api/photos.js" },
-    { "source": "/((?!api/).*)", "destination": "/index.html" }
+    { "source": "/api/photos",      "destination": "/api/photos.js" },
+    { "source": "/api/sign-upload", "destination": "/api/sign-upload.js" },
+    { "source": "/((?!api/|upload\\.html$).*)", "destination": "/index.html" }
   ]
 }
