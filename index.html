@@ -165,13 +165,11 @@ nav.scrolled{padding:.8rem 3rem;box-shadow:0 2px 24px rgba(58,22,5,.09);}
 .stripe.in{transform:scaleX(1);}
 
 /* ── ABOUT ── */
-.about-band{background:var(--bisque);display:grid;grid-template-columns:1fr 1fr;min-height:70vh;overflow:hidden;}
-.about-img{overflow:hidden;min-height:500px;}
-.about-img img{width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.06);transition:transform 1.3s ease;}
-.about-img.in img{transform:scale(1);}
-.about-text{padding:6rem 5.5rem 6rem 4.5rem;display:flex;flex-direction:column;justify-content:center;}
-.about-text p{font-size:.92rem;font-weight:200;line-height:2;color:var(--text-mid);margin-top:1.5rem;max-width:420px;}
-.about-quote{font-family:'Cormorant Garamond',serif;font-size:1.9rem;font-weight:300;font-style:italic;color:var(--brown-dark);line-height:1.35;margin-top:2.2rem;border-left:2px solid var(--brown-light);padding-left:1.5rem;}
+.about-band{background:var(--bisque);padding:7rem 2rem;overflow:hidden;}
+.about-img{display:none;}
+.about-text{max-width:680px;margin:0 auto;display:flex;flex-direction:column;align-items:center;text-align:center;}
+.about-text p{font-size:.92rem;font-weight:200;line-height:2;color:var(--text-mid);margin-top:1.5rem;max-width:520px;}
+.about-quote{font-family:'Cormorant Garamond',serif;font-size:1.9rem;font-weight:300;font-style:italic;color:var(--brown-dark);line-height:1.35;margin-top:2.2rem;border-left:2px solid var(--brown-light);padding-left:1.5rem;text-align:left;}
 
 /* ── CONTACT ── */
 .contact-section{padding:7rem 2rem 7rem;text-align:center;}
@@ -252,9 +250,7 @@ footer small{font-size:.68rem;letter-spacing:.1em;color:rgba(255,228,196,.4);}
   .hero-right{min-height:55vh;}
   .hero-left{padding:7rem 2.5rem 3rem;}
   .masonry{columns:2;}
-  .about-band{grid-template-columns:1fr;}
-  .about-img{min-height:300px;}
-  .about-text{padding:3.5rem 2rem;}
+  .about-band{padding:4rem 1.5rem;}
   footer{flex-direction:column;gap:1.2rem;text-align:center;}
 }
 @media(max-width:560px){
@@ -388,8 +384,8 @@ footer small{font-size:.68rem;letter-spacing:.1em;color:rgba(255,228,196,.4);}
   </div>
   <div class="about-text">
     <span class="sec-tag reveal" data-t="about_tag">About</span>
-    <h2 class="sec-title reveal" data-t="about_title_h" style="text-align:left;font-size:clamp(2rem,3.5vw,3rem);transition-delay:.1s">The <em>artist</em><br>behind the lens</h2>
-    <p class="reveal" data-t="about_body" style="transition-delay:.2s">I'm Daria — a photographer based in Warsaw with a passion for capturing raw emotion and authentic beauty. My work spans intimate portraits, love stories, and family moments.</p>
+    <h2 class="sec-title reveal" data-t="about_title_h" style="font-size:clamp(2rem,3.5vw,3rem);transition-delay:.1s">The <em>artist</em><br>behind the lens</h2>
+    <p class="reveal" data-t="about_body" style="transition-delay:.2s">I'm Daria — a photographer based in Warsaw with a passion for capturing raw emotion and authentic beauty. My work spans heartfelt portraits, love stories, and family moments.</p>
     <blockquote class="about-quote reveal" data-t="about_quote" style="transition-delay:.3s">"I don't just take photos — I preserve feelings."</blockquote>
   </div>
 </section>
@@ -512,7 +508,7 @@ var T = {
     gal_tag:'Portfolio', gal_title_h:'Collections & <em>Stories</em>', gal_empty:'No photos yet.',
     show_more:'Show more',
     about_tag:'About', about_title_h:'The <em>artist</em><br>behind the lens',
-    about_body:"I\u2019m Daria \u2014 a photographer based in Warsaw with a passion for capturing raw emotion and authentic beauty. My work spans intimate portraits, love stories, and family moments.",
+    about_body:"I\u2019m Daria \u2014 a photographer based in Warsaw with a passion for capturing raw emotion and authentic beauty. My work spans heartfelt portraits, love stories, and family moments.",
     about_quote:'\u201CI don\u2019t just take photos \u2014 I preserve feelings.\u201D',
     contact_tag:"Let\u2019s connect", contact_title_h:'Find me <em>here</em>',
     contact_body:"Looking for a photographer who will make you feel comfortable and create images you\u2019ll treasure forever? Reach out on Instagram or Threads.",
@@ -540,8 +536,8 @@ var T = {
     gal_tag:'\u041f\u043e\u0440\u0442\u0444\u043e\u043b\u0456\u043e', gal_title_h:'\u041a\u043e\u043b\u0435\u043a\u0446\u0456\u0457 \u0442\u0430 <em>\u0406\u0441\u0442\u043e\u0440\u0456\u0457</em>', gal_empty:'\u0424\u043e\u0442\u043e\u0433\u0440\u0430\u0444\u0456\u0439 \u043f\u043e\u043a\u0438 \u043d\u0435\u043c\u0430\u0454.',
     show_more:'\u041f\u043e\u043a\u0430\u0437\u0430\u0442\u0438 \u0431\u0456\u043b\u044c\u0448\u0435',
     about_tag:'\u041f\u0440\u043e \u043c\u0435\u043d\u0435', about_title_h:'\u041c\u0438\u0441\u0442\u043a\u0438\u043d\u044f<br><em>\u0437\u0430 \u043e\u0431\u2019\u0454\u043a\u0442\u0438\u0432\u043e\u043c</em>',
-    about_body:'\u042f \u0414\u0430\u0440\u2019\u044f \u2014 \u0444\u043e\u0442\u043e\u0433\u0440\u0430\u0444\u0438\u043d\u044f \u0443 \u0412\u0430\u0440\u0448\u0430\u0432\u0456 \u0456\u0437 \u043f\u0440\u0438\u0441\u0442\u0440\u0430\u0441\u0442\u044e \u0434\u043e \u0449\u0438\u0440\u0438\u0445 \u0435\u043c\u043e\u0446\u0456\u0439 \u0442\u0430 \u0441\u043f\u0440\u0430\u0432\u0436\u043d\u044c\u043e\u0457 \u043a\u0440\u0430\u0441\u0438. \u041c\u043e\u044f \u0440\u043e\u0431\u043e\u0442\u0430 \u043e\u0445\u043e\u043f\u043b\u044e\u0454 \u0456\u043d\u0442\u0438\u043c\u043d\u0456 \u043f\u043e\u0440\u0442\u0440\u0435\u0442\u0438, \u043b\u0430\u0432-\u0441\u0442\u043e\u0440\u0456 \u0442\u0430 \u0441\u0456\u043c\u0435\u0439\u043d\u0456 \u0437\u043d\u0456\u043c\u043a\u0438.',
-    about_quote:'\u00ab\u042f \u043d\u0435 \u043f\u0440\u043e\u0441\u0442\u043e \u0440\u043e\u0431\u043b\u044e \u0444\u043e\u0442\u043e \u2014 \u044f \u0437\u0431\u0435\u0440\u0456\u0433\u0430\u044e \u043f\u043e\u0447\u0443\u0442\u0442\u044f.\u00bb',
+    about_body:'\u042f \u0414\u0430\u0440\u2019\u044f \u2014 \u0444\u043e\u0442\u043e\u0433\u0440\u0430\u0444\u0438\u043d\u044f \u0443 \u0412\u0430\u0440\u0448\u0430\u0432\u0456 \u0437 \u043f\u0440\u0438\u0441\u0442\u0440\u0430\u0441\u0442\u044e \u0434\u043e \u0441\u043f\u0440\u0430\u0432\u0436\u043d\u0456\u0445 \u0435\u043c\u043e\u0446\u0456\u0439 \u0442\u0430 \u0430\u0432\u0442\u0435\u043d\u0442\u0438\u0447\u043d\u043e\u0457 \u043a\u0440\u0430\u0441\u0438. \u041c\u043e\u044f \u0440\u043e\u0431\u043e\u0442\u0430 \u043e\u0445\u043e\u043f\u043b\u044e\u0454 \u0449\u0438\u0440\u0456 \u043f\u043e\u0440\u0442\u0440\u0435\u0442\u0438, \u043b\u0430\u0432-\u0441\u0442\u043e\u0440\u0456 \u0442\u0430 \u0441\u0456\u043c\u0435\u0439\u043d\u0456 \u0437\u043d\u0456\u043c\u043a\u0438.',
+    about_quote:'\u00ab\u042f \u043d\u0435 \u043f\u0440\u043e\u0441\u0442\u043e \u0440\u043e\u0431\u043b\u044e \u0444\u043e\u0442\u043e \u2014 \u044f \u0437\u0443\u043f\u0438\u043d\u044f\u044e \u0435\u043c\u043e\u0446\u0456\u0457.\u00bb',
     contact_tag:'\u0417\u0432\u2019\u044f\u0436\u0456\u0442\u044c\u0441\u044f \u0437\u0456 \u043c\u043d\u043e\u044e', contact_title_h:'\u0417\u043d\u0430\u0439\u0434\u0456\u0442\u044c \u043c\u0435\u043d\u0435 <em>\u0442\u0443\u0442</em>',
     contact_body:'\u0428\u0443\u043a\u0430\u0454\u0442\u0435 \u0444\u043e\u0442\u043e\u0433\u0440\u0430\u0444\u0430, \u044f\u043a\u0438\u0439 \u0434\u043e\u043f\u043e\u043c\u043e\u0436\u0435 \u0432\u0430\u043c \u0432\u0456\u0434\u0447\u0443\u0442\u0438 \u0441\u0435\u0431\u0435 \u043a\u043e\u043c\u0444\u043e\u0440\u0442\u043d\u043e \u0442\u0430 \u0441\u0442\u0432\u043e\u0440\u0438\u0442\u044c \u0437\u043d\u0456\u043c\u043a\u0438, \u044f\u043a\u0456 \u0432\u0438 \u0431\u0443\u0434\u0435\u0442\u0435 \u0431\u0435\u0440\u0435\u0433\u0442\u0438 \u0432\u0456\u0447\u043d\u043e? \u041f\u0438\u0448\u0456\u0442\u044c \u0432 Instagram \u0430\u0431\u043e Threads.',
     nav_pricing:'\u0426\u0456\u043d\u0438',
@@ -568,8 +564,8 @@ var T = {
     gal_tag:'Portfolio', gal_title_h:'Kolekcje i <em>Historie</em>', gal_empty:'Brak zdj\u0119\u0107.',
     show_more:'Poka\u017c wi\u0119cej',
     about_tag:'O mnie', about_title_h:'Artystka<br><em>za obiektywem</em>',
-    about_body:'Jestem Daria \u2014 fotografka z Warszawy z pasj\u0105 do uchwycenia prawdziwych emocji i autentycznego pi\u0119kna. Moja praca obejmuje intymne portrety, sesje love story i zdj\u0119cia rodzinne.',
-    about_quote:'\u201eNie tylko robi\u0119 zdj\u0119cia \u2014 zachowuj\u0119 uczucia.\u201d',
+    about_body:'Jestem Daria, fotografka z Warszawy z pasj\u0105 do uchwycenia prawdziwych emocji i autentycznego pi\u0119kna. Moja praca obejmuje portrety, sesje love story oraz zdj\u0119cia rodzinne.',
+    about_quote:'\u201eNie tylko robi\u0119 zdj\u0119cia \u2014 zatrzymuj\u0119 emocje."',
     contact_tag:'Po\u0142\u0105czmy si\u0119', contact_title_h:'Znajd\u017a mnie <em>tutaj</em>',
     contact_body:'Szukasz fotografki, która pomoże Ci poczuć się swobodnie i stworzy zdjęcia, do których będziesz wracać przez lata? Napisz na Instagram lub Threads.',
     nav_pricing:'Cennik',
