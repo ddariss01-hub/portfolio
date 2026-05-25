@@ -612,23 +612,31 @@ window.addEventListener('click', function(e) {
 });
 
 
-/* Database Definition */
-window.allPhotosData = [
-  { id: 1,  cat: "love",    src: "photos/love1.jpg",  date: "2025" },
-  { id: 2,  cat: "love",    src: "photos/love2.jpg",  date: "2025" },
-  { id: 3,  cat: "love",    src: "photos/love3.jpg",  date: "2024" },
-  { id: 4,  cat: "love",    src: "photos/love4.jpg",  date: "2025" },
-  { id: 5,  cat: "portrait",src: "photos/port1.jpg",  date: "2025" },
-  { id: 6,  cat: "portrait",src: "photos/port2.jpg",  date: "2024" },
-  { id: 7,  cat: "portrait",src: "photos/port3.jpg",  date: "2025" },
-  { id: 8,  cat: "portrait",src: "photos/port4.jpg",  date: "2025" },
-  { id: 9,  cat: "portrait",src: "photos/port5.jpg",  date: "2024" },
-  { id: 10, cat: "portrait",src: "photos/port6.jpg",  date: "2025" },
-  { id: 11, cat: "family",  src: "photos/fam1.jpg",   date: "2025" },
-  { id: 12, cat: "family",  src: "photos/fam2.jpg",   date: "2024" },
-  { id: 13, cat: "family",  src: "photos/fam3.jpg",   date: "2025" },
-  { id: 14, cat: "family",  src: "photos/fam4.jpg",   date: "2025" }
-];
+/* Load photos from Cloudinary via API */
+window.allPhotosData = [];
+
+function loadPhotos() {
+  fetch('/api/photos')
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      if (!Array.isArray(data) || data.length === 0) return;
+      window.allPhotosData = data.map(function(img, i) {
+        return {
+          id:   img.id || i,
+          cat:  img.category || 'general',
+          src:  img.thumb,
+          full: img.full,
+          hero: img.hero,
+          date: img.date || ''
+        };
+      });
+      buildHeroCollage();
+      renderGallery();
+    })
+    .catch(function(err) {
+      console.error('Failed to load photos:', err);
+    });
+}
 
 /* Gallery Engine */
 var currentCategory = 'all';
@@ -808,7 +816,7 @@ function buildHeroCollage() {
 
   var html = '';
   items.forEach(function(item) {
-    html += '<div class="hp-cell"><img src="' + item.src + '" alt="Daria Shevchenko Studio"></div>';
+    html += '<div class="hp-cell"><img src="' + (item.hero || item.src) + '" alt="Daria Shevchenko Studio"></div>';
   });
   hp.innerHTML = html;
   
@@ -886,9 +894,8 @@ document.addEventListener('DOMContentLoaded', function() {
   if (userLang !== 'uk' && userLang !== 'pl') userLang = 'en';
   setLang(userLang);
 
-  // 2. Build layouts
-  buildHeroCollage();
-  renderGallery();
+  // 2. Load photos from Cloudinary then build layouts
+  loadPhotos();
 
   // 3. Trigger tracking hooks
   initAnimations();
