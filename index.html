@@ -265,7 +265,6 @@ footer small{font-size:.68rem;letter-spacing:.1em;color:rgba(255,228,196,.4);}
 <body>
 
 <div id="loader"><div class="loader-logo">Daria Shevchenko</div><div class="loader-line"></div></div>
-<!-- Mobile fullscreen menu -->
 <div class="nav-mobile-menu" id="mobileMenu">
   <a href="#gallery" onclick="closeMobileMenu()" data-t="nav_portfolio">Portfolio</a>
   <a href="#about"   onclick="closeMobileMenu()" data-t="nav_about">About</a>
@@ -278,10 +277,8 @@ footer small{font-size:.68rem;letter-spacing:.1em;color:rgba(255,228,196,.4);}
   </div>
 </div>
 
-<!-- NAV -->
 <nav id="nav">
   <a href="#" class="nav-logo">Daria <span>Shevchenko</span></a>
-  <!-- Desktop links -->
   <ul class="nav-links">
     <li><a href="#gallery" data-t="nav_portfolio">Portfolio</a></li>
     <li><a href="#about"   data-t="nav_about">About</a></li>
@@ -301,13 +298,11 @@ footer small{font-size:.68rem;letter-spacing:.1em;color:rgba(255,228,196,.4);}
       </div>
     </li>
   </ul>
-  <!-- Mobile hamburger -->
   <button class="nav-hamburger" id="hamburger" onclick="toggleMobileMenu()" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
 </nav>
 
-<!-- HERO -->
 <section class="hero">
   <div class="hero-left">
     <p class="hero-eyebrow" data-t="hero_eyebrow">Photography by Daria Shevchenko</p>
@@ -361,7 +356,6 @@ footer small{font-size:.68rem;letter-spacing:.1em;color:rgba(255,228,196,.4);}
   </div>
 </section>
 
-<!-- GALLERY -->
 <section id="gallery">
   <div class="sec-head">
     <span class="sec-tag reveal" data-t="gal_tag">Portfolio</span>
@@ -379,7 +373,6 @@ footer small{font-size:.68rem;letter-spacing:.1em;color:rgba(255,228,196,.4);}
   </div>
 </section>
 
-<!-- ABOUT -->
 <section id="about" class="about-band">
   <div class="about-img reveal-left" id="aboutImg">
     <img src="photos/about.jpg" alt="Daria Shevchenko" loading="lazy"
@@ -393,7 +386,6 @@ footer small{font-size:.68rem;letter-spacing:.1em;color:rgba(255,228,196,.4);}
   </div>
 </section>
 
-<!-- PRICING -->
 <section id="pricing" class="pricing-section">
   <div class="sec-head">
     <span class="sec-tag reveal" data-t="price_tag">Pricing</span>
@@ -402,7 +394,6 @@ footer small{font-size:.68rem;letter-spacing:.1em;color:rgba(255,228,196,.4);}
   <div class="stripe reveal" style="transition-delay:.3s"></div>
   <div class="pricing-grid">
 
-    <!-- Portrait -->
     <div class="price-card reveal" style="transition-delay:.1s">
       <div class="price-name" data-t="price_p_name">Portrait</div>
       <div class="price-amount"><span class="price-num">200</span><span class="price-unit">zł</span></div>
@@ -417,7 +408,6 @@ footer small{font-size:.68rem;letter-spacing:.1em;color:rgba(255,228,196,.4);}
       <a class="price-cta-link" href="#contact" data-t="price_cta">Book a session</a>
     </div>
 
-    <!-- Love Story -->
     <div class="price-card reveal" style="transition-delay:.2s">
       <div class="price-name" data-t="price_ls_name">Love Story</div>
       <div class="price-amount"><span class="price-num">200</span><span class="price-unit">zł</span></div>
@@ -432,7 +422,6 @@ footer small{font-size:.68rem;letter-spacing:.1em;color:rgba(255,228,196,.4);}
       <a class="price-cta-link" href="#contact" data-t="price_cta">Book a session</a>
     </div>
 
-    <!-- Family -->
     <div class="price-card reveal" style="transition-delay:.3s">
       <div class="price-name" data-t="price_fam_name">Family</div>
       <div class="price-amount"><span class="price-num">200</span><span class="price-unit">zł</span></div>
@@ -450,32 +439,30 @@ footer small{font-size:.68rem;letter-spacing:.1em;color:rgba(255,228,196,.4);}
   </div>
 </section>
 
-<!-- CONTACT -->
 <section id="contact" class="contact-section">
   <span class="sec-tag reveal" data-t="contact_tag">Let's connect</span>
-  <h2 class="sec-title reveal" data-t="contact_title_h" style="transition-delay:.1s">Find me <em>here</em></h2>
-  <div class="contact-card reveal" style="transition-delay:.25s">
-    <p data-t="contact_body">Looking for a photographer who will make you feel comfortable and create images you'll treasure forever? Reach out on Instagram or Threads.</p>
+  <h2 class="sec-title reveal" data-t="contact_title_h" style="transition-delay:.15s">Let's create <em>together</em></h2>
+  <div class="contact-card reveal" style="transition-delay:.3s">
+    <p data-t="contact_desc">Ready to tell your story? Send me a message on your favorite platform, and let's choose the perfect concept for your session.</p>
     <div class="social-links">
-      <a class="social-btn" href="https://www.instagram.com/ddaris.photo?igsh=cnh5dTYyYzZ6bnc4&utm_source=qr" target="_blank" rel="noopener">
+      <a href="https://instagram.com/shevchenko_dari" class="social-btn" target="_blank" rel="noopener">
         <span class="btn-icon">
-          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="24" height="24" rx="6" fill="#A0522D"/>
-            <rect x="6.5" y="6.5" width="11" height="11" rx="3.5" stroke="white" stroke-width="1.4" fill="none"/>
-            <circle cx="12" cy="12" r="2.8" stroke="white" stroke-width="1.3" fill="none"/>
-            <circle cx="16.1" cy="7.9" r=".85" fill="white"/>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
           </svg>
         </span>
         <span class="btn-label">Instagram</span>
       </a>
-      <a class="social-btn" href="https://www.threads.com/@ddaris.photo?igshid=NTc4MTIwNjQ2YQ==" target="_blank" rel="noopener">
+      <a href="https://t.me/shevchenko_dari" class="social-btn" target="_blank" rel="noopener">
         <span class="btn-icon">
-          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <rect width="24" height="24" rx="6" fill="#A0522D"/>
-            <path fill="white" d="M16.1 11.3c-.1-.1-.3-.1-.4-.2-.1-2-1.2-3.1-3-3.1h-.1c-1.1 0-2 .5-2.6 1.3l.8.6c.4-.6 1-.9 1.8-.9h.1c1.1 0 1.8.7 1.9 1.8-.5-.1-1-.1-1.5-.1-1.5 0-2.5.7-2.5 2 0 1.2 1 2 2.6 2 1.3 0 2.1-.6 2.6-1.6.1.5.2 1 .2 1.6 0 1.6-1.4 2.7-3.1 2.7-2 0-3.5-1.5-3.5-3.5s1.5-3.5 3.5-3.5c.7 0 1.3.2 1.8.5l.6-.8C14.1 7.3 13.1 7 12 7 9.2 7 7 9.2 7 12s2.2 5 5 5c2.3 0 4.1-1.5 4.1-3.8 0-.6-.1-1.2-.2-1.7 0-.1-.1-.2-.1-.3.4.1.7.3 1 .5l.3-1.4z"/>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="22" y1="2" x2="11" y2="13"></line>
+            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
           </svg>
         </span>
-        <span class="btn-label">Threads</span>
+        <span class="btn-label">Telegram</span>
       </a>
     </div>
   </div>
@@ -483,305 +470,382 @@ footer small{font-size:.68rem;letter-spacing:.1em;color:rgba(255,228,196,.4);}
 
 <footer>
   <div class="footer-logo">Daria Shevchenko</div>
-  <small>&#169; <span id="yr"></span> <span data-t="footer_copy">All rights reserved</span></small>
+  <small>&copy; 2026 Daria Shevchenko. All rights reserved.</small>
   <div class="footer-links">
-    <a href="https://www.instagram.com/ddaris.photo?igsh=cnh5dTYyYzZ6bnc4&utm_source=qr" target="_blank" rel="noopener">Instagram</a>
-    <a href="https://www.threads.com/@ddaris.photo?igshid=NTc4MTIwNjQ2YQ==" target="_blank" rel="noopener">Threads</a>
+    <a href="#gallery" data-t="nav_portfolio">Portfolio</a>
+    <a href="#about" data-t="nav_about">About</a>
+    <a href="#pricing" data-t="nav_pricing">Pricing</a>
+    <a href="#contact" data-t="nav_contact">Contact</a>
   </div>
 </footer>
 
-<!-- LIGHTBOX -->
-<div class="lightbox" id="lightbox">
-  <button class="lb-close" onclick="lbClose()">&#10005;</button>
-  <button class="lb-nav lb-prev" onclick="lbNav(-1)">&#8249;</button>
-  <img id="lbImg" src="" alt="">
-  <p class="lb-caption" id="lbCap"></p>
-  <button class="lb-nav lb-next" onclick="lbNav(1)">&#8250;</button>
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+  <button class="lb-close" onclick="closeLightbox(event)">&#10005;</button>
+  <button class="lb-nav lb-prev" onclick="prevImage(event)">&#8249;</button>
+  <img id="lbImg" src="" alt="Enlarged photo">
+  <button class="lb-nav lb-next" onclick="nextImage(event)">&#8250;</button>
+  <div class="lb-caption" id="lbCaption"></div>
 </div>
 
+
 <script>
-/* ── TRANSLATIONS ── */
-var T = {
-  en:{
-    nav_portfolio:'Portfolio', nav_about:'About', nav_contact:'Contact',
-    hero_eyebrow:'Photography by Daria Shevchenko',
-    hero_title_h:'Capturing<br><em>moments</em><br>that last.',
-    hero_sub:'Portrait & love story photography based in Warsaw. Every frame captures a feeling worth holding onto forever.',
-    hero_cta:'Explore portfolio', scroll:'Scroll',
-    gal_tag:'Portfolio', gal_title_h:'Collections & <em>Stories</em>', gal_empty:'No photos yet.',
-    show_more:'Show more',
-    about_tag:'About', about_title_h:'The <em>artist</em><br>behind the lens',
-    about_body:"I\u2019m Daria \u2014 a photographer based in Warsaw with a passion for capturing raw emotion and authentic beauty. My work spans heartfelt portraits, love stories, and family moments.",
-    about_quote:'\u201CI don\u2019t just take photos \u2014 I preserve feelings.\u201D',
-    contact_tag:"Let\u2019s connect", contact_title_h:'Find me <em>here</em>',
-    contact_body:"Looking for a photographer who will make you feel comfortable and create images you\u2019ll treasure forever? Reach out on Instagram or Threads.",
-    nav_pricing:'Pricing',
-    price_tag:'Pricing', price_title_h:'Every moment deserves a <em>frame</em>',
-    price_p_name:'Portrait',
-    price_p_desc:'A personal session focused entirely on you \u2014 your expression, your light, your story.',
-    price_p_feats:'<li>1 hour</li><li>30\u201340 edited photos</li><li>Any location or studio</li>',
-    price_ls_name:'Love Story',
-    price_ls_desc:'A romantic session for couples \u2014 natural, emotional, and full of feeling.',
-    price_ls_feats:'<li>1 hour</li><li>30\u201340 edited photos</li><li>Any location or studio</li>',
-    price_fam_name:'Family',
-    price_fam_desc:'Warm, joyful moments with the people who matter most.',
-    price_fam_feats:'<li>1 hour</li><li>30\u201340 edited photos</li><li>Any location or studio</li>',
-    price_studio:'+ Studio fee covered by client',
-    price_cta:'Book a session',
-    footer_copy:'All rights reserved'
+/* Dictionaries */
+var dict = {
+  en: {
+    nav_portfolio: "Portfolio", nav_about: "About", nav_pricing: "Pricing", nav_contact: "Contact",
+    hero_eyebrow: "Photography by Daria Shevchenko",
+    hero_title_h: "Capturing<br><em>moments</em><br>that last.",
+    hero_sub: "Portrait & love story photography based in Warsaw. Every frame tells a story only you can live.",
+    hero_cta: "Explore portfolio", scroll: "Scroll",
+    gal_tag: "Portfolio", gal_title_h: "Collections & <em>Stories</em>", gal_empty: "No photos yet.",
+    show_more: "Show more",
+    about_tag: "About", about_title_h: "The <em>artist</em><br>behind the lens",
+    about_body: "I'm Daria — a photographer based in Warsaw with a passion for capturing raw emotion and authentic beauty. My work spans heartfelt portraits, love stories, and family moments.",
+    about_quote: '"I don\'t just take photos — I preserve feelings."',
+    price_tag: "Pricing", price_title_h: "Every moment deserves a <em>frame</em>",
+    price_p_name: "Portrait", price_p_desc: "A personal session focused entirely on you — your expression, your light, your story.",
+    price_ls_name: "Love Story", price_ls_desc: "A romantic session for couples — natural, emotional, and full of feeling.",
+    price_fam_name: "Family", price_fam_desc: "Warm, joyful moments with the people who matter most.",
+    price_p_feats: "<li>1 hour</li><li>30–40 edited photos</li><li>Any location or studio</li>",
+    price_ls_feats: "<li>1 hour</li><li>30–40 edited photos</li><li>Any location or studio</li>",
+    price_fam_feats: "<li>1 hour</li><li>30–40 edited photos</li><li>Any location or studio</li>",
+    price_studio: "+ Studio fee covered by client", price_cta: "Book a session",
+    contact_tag: "Let's connect", contact_title_h: "Let's create <em>together</em>",
+    contact_desc: "Ready to tell your story? Send me a message on your favorite platform, and let's choose the perfect concept for your session."
   },
-  uk:{
-    nav_portfolio:'\u041f\u043e\u0440\u0442\u0444\u043e\u043b\u0456\u043e', nav_about:'\u041f\u0440\u043e \u043c\u0435\u043d\u0435', nav_contact:'\u041a\u043e\u043d\u0442\u0430\u043a\u0442',
-    hero_eyebrow:'\u0424\u043e\u0442\u043e\u0433\u0440\u0430\u0444\u0456\u044f \u0414\u0430\u0440\u2019\u0457 \u0428\u0435\u0432\u0447\u0435\u043d\u043a\u043e',
-    hero_title_h:'\u0417\u0431\u0435\u0440\u0456\u0433\u0430\u044e<br><em>\u043c\u043e\u043c\u0435\u043d\u0442\u0438</em><br>\u043d\u0430\u0437\u0430\u0432\u0436\u0434\u0438.',
-    hero_sub:'\u041f\u043e\u0440\u0442\u0440\u0435\u0442\u043d\u0430 \u0442\u0430 \u043b\u0430\u0432-\u0441\u0442\u043e\u0440\u0456 \u0444\u043e\u0442\u043e\u0433\u0440\u0430\u0444\u0456\u044f \u0443 \u0412\u0430\u0440\u0448\u0430\u0432\u0456. \u041a\u043e\u0436\u0435\u043d \u043a\u0430\u0434\u0440 \u0437\u0431\u0435\u0440\u0456\u0433\u0430\u0454 \u0432\u0456\u0434\u0447\u0443\u0442\u0442\u044f, \u044f\u043a\u0435 \u0445\u043e\u0447\u0435\u0442\u044c\u0441\u044f \u0431\u0435\u0440\u0435\u0433\u0442\u0438 \u0432\u0456\u0447\u043d\u043e.',
-    hero_cta:'\u041f\u0435\u0440\u0435\u0433\u043b\u044f\u043d\u0443\u0442\u0438 \u043f\u043e\u0440\u0442\u0444\u043e\u043b\u0456\u043e', scroll:'\u0413\u043e\u0440\u0442\u0430\u0442\u0438',
-    gal_tag:'\u041f\u043e\u0440\u0442\u0444\u043e\u043b\u0456\u043e', gal_title_h:'\u041a\u043e\u043b\u0435\u043a\u0446\u0456\u0457 \u0442\u0430 <em>\u0406\u0441\u0442\u043e\u0440\u0456\u0457</em>', gal_empty:'\u0424\u043e\u0442\u043e\u0433\u0440\u0430\u0444\u0456\u0439 \u043f\u043e\u043a\u0438 \u043d\u0435\u043c\u0430\u0454.',
-    show_more:'\u041f\u043e\u043a\u0430\u0437\u0430\u0442\u0438 \u0431\u0456\u043b\u044c\u0448\u0435',
-    about_tag:'\u041f\u0440\u043e \u043c\u0435\u043d\u0435', about_title_h:'\u041c\u0438\u0441\u0442\u043a\u0438\u043d\u044f<br><em>\u0437\u0430 \u043e\u0431\u2019\u0454\u043a\u0442\u0438\u0432\u043e\u043c</em>',
-    about_body:'\u042f \u0414\u0430\u0440\u2019\u044f \u2014 \u0444\u043e\u0442\u043e\u0433\u0440\u0430\u0444\u0438\u043d\u044f \u0443 \u0412\u0430\u0440\u0448\u0430\u0432\u0456 \u0437 \u043f\u0440\u0438\u0441\u0442\u0440\u0430\u0441\u0442\u044e \u0434\u043e \u0441\u043f\u0440\u0430\u0432\u0436\u043d\u0456\u0445 \u0435\u043c\u043e\u0446\u0456\u0439 \u0442\u0430 \u0430\u0432\u0442\u0435\u043d\u0442\u0438\u0447\u043d\u043e\u0457 \u043a\u0440\u0430\u0441\u0438. \u041c\u043e\u044f \u0440\u043e\u0431\u043e\u0442\u0430 \u043e\u0445\u043e\u043f\u043b\u044e\u0454 \u0449\u0438\u0440\u0456 \u043f\u043e\u0440\u0442\u0440\u0435\u0442\u0438, \u043b\u0430\u0432-\u0441\u0442\u043e\u0440\u0456 \u0442\u0430 \u0441\u0456\u043c\u0435\u0439\u043d\u0456 \u0437\u043d\u0456\u043c\u043a\u0438.',
-    about_quote:'\u00ab\u042f \u043d\u0435 \u043f\u0440\u043e\u0441\u0442\u043e \u0440\u043e\u0431\u043b\u044e \u0444\u043e\u0442\u043e \u2014 \u044f \u0437\u0443\u043f\u0438\u043d\u044f\u044e \u0435\u043c\u043e\u0446\u0456\u0457.\u00bb',
-    contact_tag:'\u0417\u0432\u2019\u044f\u0436\u0456\u0442\u044c\u0441\u044f \u0437\u0456 \u043c\u043d\u043e\u044e', contact_title_h:'\u0417\u043d\u0430\u0439\u0434\u0456\u0442\u044c \u043c\u0435\u043d\u0435 <em>\u0442\u0443\u0442</em>',
-    contact_body:'\u0428\u0443\u043a\u0430\u0454\u0442\u0435 \u0444\u043e\u0442\u043e\u0433\u0440\u0430\u0444\u0430, \u044f\u043a\u0438\u0439 \u0434\u043e\u043f\u043e\u043c\u043e\u0436\u0435 \u0432\u0430\u043c \u0432\u0456\u0434\u0447\u0443\u0442\u0438 \u0441\u0435\u0431\u0435 \u043a\u043e\u043c\u0444\u043e\u0440\u0442\u043d\u043e \u0442\u0430 \u0441\u0442\u0432\u043e\u0440\u0438\u0442\u044c \u0437\u043d\u0456\u043c\u043a\u0438, \u044f\u043a\u0456 \u0432\u0438 \u0431\u0443\u0434\u0435\u0442\u0435 \u0431\u0435\u0440\u0435\u0433\u0442\u0438 \u0432\u0456\u0447\u043d\u043e? \u041f\u0438\u0448\u0456\u0442\u044c \u0432 Instagram \u0430\u0431\u043e Threads.',
-    nav_pricing:'\u0426\u0456\u043d\u0438',
-    price_tag:'\u0426\u0456\u043d\u0438', price_title_h:'\u041a\u043e\u0436\u043d\u0430 \u043c\u0438\u0442\u044c \u0437\u0430\u0441\u043b\u0443\u0433\u043e\u0432\u0443\u0454 \u043d\u0430 <em>\u043a\u0430\u0434\u0440</em>',
-    price_p_name:'\u041f\u043e\u0440\u0442\u0440\u0435\u0442',
-    price_p_desc:'\u041e\u0441\u043e\u0431\u0438\u0441\u0442\u0456\u0441\u043d\u0430 \u0437\u0439\u043e\u043c\u043a\u0430 \u2014 \u0432\u0430\u0448 \u043e\u0431\u0440\u0430\u0437, \u0432\u0430\u0448\u0435 \u0441\u0432\u0456\u0442\u043b\u043e, \u0432\u0430\u0448\u0430 \u0456\u0441\u0442\u043e\u0440\u0456\u044f.',
-    price_p_feats:'<li>1 \u0433\u043e\u0434\u0438\u043d\u0430</li><li>30\u201340 \u043e\u0431\u0440\u043e\u0431\u043b\u0435\u043d\u0438\u0445 \u0444\u043e\u0442\u043e</li><li>\u0411\u0443\u0434\u044c-\u044f\u043a\u0430 \u043b\u043e\u043a\u0430\u0446\u0456\u044f \u0430\u0431\u043e \u0441\u0442\u0443\u0434\u0456\u044f</li>',
-    price_ls_name:'\u041b\u0430\u0432-\u0441\u0442\u043e\u0440\u0456',
-    price_ls_desc:'\u0420\u043e\u043c\u0430\u043d\u0442\u0438\u0447\u043d\u0430 \u0437\u0439\u043e\u043c\u043a\u0430 \u0434\u043b\u044f \u0437\u0430\u043a\u043e\u0445\u0430\u043d\u0438\u0445 \u2014 \u043f\u0440\u0438\u0440\u043e\u0434\u043d\u0430, \u0435\u043c\u043e\u0446\u0456\u0439\u043d\u0430 \u0442\u0430 \u0449\u0438\u0440\u0430.',
-    price_ls_feats:'<li>1 \u0433\u043e\u0434\u0438\u043d\u0430</li><li>30\u201340 \u043e\u0431\u0440\u043e\u0431\u043b\u0435\u043d\u0438\u0445 \u0444\u043e\u0442\u043e</li><li>\u0411\u0443\u0434\u044c-\u044f\u043a\u0430 \u043b\u043e\u043a\u0430\u0446\u0456\u044f \u0430\u0431\u043e \u0441\u0442\u0443\u0434\u0456\u044f</li>',
-    price_fam_name:'\u0421\u0456\u043c\u0435\u0439\u043d\u0430 \u0437\u0439\u043e\u043c\u043a\u0430',
-    price_fam_desc:'\u0422\u0435\u043f\u043b\u0456, \u0440\u0430\u0434\u0456\u0441\u043d\u0456 \u043c\u043e\u043c\u0435\u043d\u0442\u0438 \u0437 \u043d\u0430\u0439\u0440\u0456\u0434\u043d\u0456\u0448\u0438\u043c\u0438 \u043b\u044e\u0434\u044c\u043c\u0438.',
-    price_fam_feats:'<li>1 \u0433\u043e\u0434\u0438\u043d\u0430</li><li>30\u201340 \u043e\u0431\u0440\u043e\u0431\u043b\u0435\u043d\u0438\u0445 \u0444\u043e\u0442\u043e</li><li>\u0411\u0443\u0434\u044c-\u044f\u043a\u0430 \u043b\u043e\u043a\u0430\u0446\u0456\u044f \u0430\u0431\u043e \u0441\u0442\u0443\u0434\u0456\u044f</li>',
-    price_studio:'+ \u0412\u0430\u0440\u0442\u0456\u0441\u0442\u044c \u0441\u0442\u0443\u0434\u0456\u0457 \u043e\u043f\u043b\u0430\u0447\u0443\u0454 \u043a\u043b\u0456\u0454\u043d\u0442',
-    price_cta:'\u0417\u0430\u043f\u0438\u0441\u0430\u0442\u0438\u0441\u044c',
-    footer_copy:'\u0423\u0441\u0456 \u043f\u0440\u0430\u0432\u0430 \u0437\u0430\u0445\u0438\u0449\u0435\u043d\u0456'
+  uk: {
+    nav_portfolio: "Портфоліо", nav_about: "Про мене", nav_pricing: "Ціни", nav_contact: "Контакти",
+    hero_eyebrow: "Фотограф Дарія Шевченко",
+    hero_title_h: "Зберігаю<br><em>моменти</em>,<br>що тривають вічно.",
+    hero_sub: "Портретна та історія кохання зйомка у Варшаві. Кожен кадр — це особлива історія, яку проживаєте саме ви.",
+    hero_cta: "Дивитись портфоліо", scroll: "Скролл",
+    gal_tag: "Портфоліо", gal_title_h: "Колекції та <em>Історії</em>", gal_empty: "Фотографій поки немає.",
+    show_more: "Показати більше",
+    about_tag: "Про мене", about_title_h: "<em>Митець</em><br>за об'єктивом",
+    about_body: "Я Дарія — фотограф, яка живе у Варшаві та прагне фіксувати щирі емоції й справжню красу. Створюю зворушливі портрети, історії кохання та сімейні спогади.",
+    about_quote: '«Я не просто роблю знімки — я зберігаю ваші почуття.»',
+    price_tag: "Ціни", price_title_h: "Кожна мить варта свого <em>кадру</em>",
+    price_p_name: "Портрет", price_p_desc: "Індивідуальна сесія, зосереджена виключно на вас — ваші емоції, ваше світло, ваша краса.",
+    price_ls_name: "Love Story", price_ls_desc: "Романтична зйомка для пар — природна, чуттєва та сповнена щирих почуттів.",
+    price_fam_name: "Сімейна", price_fam_desc: "Теплі, сповнені радості миті з найріднішими людьми.",
+    price_p_feats: "<li>1 година зйомки</li><li>30–40 оброблених фото</li><li>Будь-яка локація або студія</li>",
+    price_ls_feats: "<li>1 година зйомки</li><li>30–40 оброблених фото</li><li>Будь-яка локація або студія</li>",
+    price_fam_feats: "<li>1 година зйомки</li><li>30–40 оброблених фото</li><li>Будь-яка локація або студія</li>",
+    price_studio: "+ Оренда студії сплачується окремо", price_cta: "Забронювати",
+    contact_tag: "Зв'яжіться зі мною", contact_title_h: "Творімо <em>разом</em>",
+    contact_desc: "Готові зберегти свої спогади? Напишіть мені в будь-якому зручному месенджері, і ми оберемо ідеальну концепцію зйомки."
   },
-  pl:{
-    nav_portfolio:'Portfolio', nav_about:'O mnie', nav_contact:'Kontakt',
-    hero_eyebrow:'Fotografia Darii Shevchenko',
-    hero_title_h:'Uwieczniam<br><em>chwile</em><br>na zawsze.',
-    hero_sub:'Fotografia portretowa i love story w Warszawie. Każdy kadr utrwala uczucie, które warto zachować na zawsze.',
-    hero_cta:'Zobacz portfolio', scroll:'Przew\u0069\u0144',
-    gal_tag:'Portfolio', gal_title_h:'Kolekcje i <em>Historie</em>', gal_empty:'Brak zdj\u0119\u0107.',
-    show_more:'Poka\u017c wi\u0119cej',
-    about_tag:'O mnie', about_title_h:'Artystka<br><em>za obiektywem</em>',
-    about_body:'Jestem Daria, fotografka z Warszawy z pasj\u0105 do uchwycenia prawdziwych emocji i autentycznego pi\u0119kna. Moja praca obejmuje portrety, sesje love story oraz zdj\u0119cia rodzinne.',
-    about_quote:'\u201eNie tylko robi\u0119 zdj\u0119cia \u2014 zatrzymuj\u0119 emocje."',
-    contact_tag:'Po\u0142\u0105czmy si\u0119', contact_title_h:'Znajd\u017a mnie <em>tutaj</em>',
-    contact_body:'Szukasz fotografki, która pomoże Ci poczuć się swobodnie i stworzy zdjęcia, do których będziesz wracać przez lata? Napisz na Instagram lub Threads.',
-    nav_pricing:'Cennik',
-    price_tag:'Cennik', price_title_h:'Każda chwila zasługuje na <em>kadr</em>',
-    price_p_name:'Portret',
-    price_p_desc:'Sesja skupiona wy\u0142\u0105cznie na Tobie \u2014 Tw\u00f3j wyraz, Twoje \u015bwiat\u0142o, Twoja historia.',
-    price_p_feats:'<li>1 godz.</li><li>30\u201340 zdj\u0119\u0107 po edycji</li><li>Dowolna lokalizacja lub studio</li>',
-    price_ls_name:'Love Story',
-    price_ls_desc:'Romantyczna sesja dla par \u2014 naturalna, emocjonalna i pe\u0142na uczu\u0107.',
-    price_ls_feats:'<li>1 godz.</li><li>30\u201340 zdj\u0119\u0107 po edycji</li><li>Dowolna lokalizacja lub studio</li>',
-    price_fam_name:'Sesja rodzinna',
-    price_fam_desc:'Ciep\u0142e, rado\u015bne chwile z najbli\u017cszymi.',
-    price_fam_feats:'<li>1 godz.</li><li>30\u201340 zdj\u0119\u0107 po edycji</li><li>Dowolna lokalizacja lub studio</li>',
-    price_studio:'+ Koszt studia pokrywa klient',
-    price_cta:'Um\u00f3w sesj\u0119',
-    footer_copy:'Wszelkie prawa zastrze\u017cone'
+  pl: {
+    nav_portfolio: "Portfolio", nav_about: "O mnie", nav_pricing: "Cennik", nav_contact: "Kontakt",
+    hero_eyebrow: "Fotografia — Daria Shevchenko",
+    hero_title_h: "Chwytam<br><em>momenty</em>,<br>które trwają.",
+    hero_sub: "Fotografia portretowa i love story w Warszawie. Każdy kadr opowiada wyjątkową historię, którą żyjesz tylko Ty.",
+    hero_cta: "Zobacz portfolio", scroll: "Przewiń",
+    gal_tag: "Portfolio", gal_title_h: "Kolekcje i <em>Historie</em>", gal_empty: "Brak zdjęć w galerii.",
+    show_more: "Pokaż więcej",
+    about_tag: "O mnie", about_title_h: "<em>Artystka</em><br>za obiektywem",
+    about_body: "Mam na imię Daria — jestem fotografką pracującą w Warszawie, z pasją uwieczniającą czyste emocje i autentyczne piękno. Tworzę osobiste portrety, historie miłosne oraz kadry rodzinne.",
+    about_quote: '„Nie tylko robię zdjęcia — ja zatrzymuję uczucia.”',
+    price_tag: "Cennik", price_title_h: "Każda chwila zasługuje na <em>ramę</em>",
+    price_p_name: "Portret", price_p_desc: "Osobista sesja skupiona całkowicie na Tobie — Twoja ekspresja, Twoje światło, Twoja historia.",
+    price_ls_name: "Love Story", price_ls_desc: "Romantyczna sesja dla par — naturalna, emocjonalna i pełna czułości.",
+    price_fam_name: "Rodzinna", price_fam_desc: "Ciepłe, pełne radości chwile z ludźmi, którzy są dla Ciebie najważniejsi.",
+    price_p_feats: "<li>1 godzina</li><li>30–40 profesjonalnych zdjęć</li><li>Dowolna lokalizacja lub studio</li>",
+    price_ls_feats: "<li>1 godzina</li><li>30–40 profesjonalnych zdjęć</li><li>Dowolna lokalizacja lub studio</li>",
+    price_fam_feats: "<li>1 godzina</li><li>30–40 profesjonalnych zdjęć</li><li>Dowolna lokalizacja lub studio</li>",
+    price_studio: "+ Koszt studia pokrywa klient", price_cta: "Zarezerwuj sesję",
+    contact_tag: "Napisz do mnie", contact_title_h: "Stwórzmy coś <em>razem</em>",
+    contact_desc: "Chcesz uwiecznić swoje wspomnienia? Wyślij mi wiadomość na wybranej platformie, a wspólnie wybierzemy idealny koncept na sesję."
   }
 };
-var LL = {en:'\uD83C\uDDEC\uD83C\uDDE7 EN', uk:'\uD83C\uDDFA\uD83C\uDDE6 UK', pl:'\uD83C\uDDF5\uD83C\uDDF1 PL'};
-var lang = localStorage.getItem('dlang') || 'en';
 
-function applyLang(l) {
-  lang = l; localStorage.setItem('dlang', l);
-  var t = T[l];
+/* Language Manager */
+var currentLang = 'en';
+function setLang(lang) {
+  if (!dict[lang]) return;
+  currentLang = lang;
+  localStorage.setItem('daria_lang', lang);
+  
+  // Text tags update
   document.querySelectorAll('[data-t]').forEach(function(el) {
-    var k = el.dataset.t; if (t[k] !== undefined) el.innerHTML = t[k];
+    var key = el.getAttribute('data-t');
+    if (dict[lang][key]) {
+      if (key.endsWith('_h')) el.innerHTML = dict[lang][key];
+      else el.textContent = dict[lang][key];
+    }
   });
-  document.getElementById('langLabel').textContent = LL[l];
-  document.querySelectorAll('.lang-opt').forEach(function(o) {
-    o.classList.toggle('active', o.dataset.lang === l);
+
+  // Features list tag exceptions
+  ['p','ls','fam'].forEach(function(pfx) {
+    var fel = document.querySelector('[data-t="price_'+pfx+'_feats"]');
+    if (fel && dict[lang]['price_'+pfx+'_feats']) {
+      fel.innerHTML = dict[lang]['price_'+pfx+'_feats'];
+    }
   });
-  ['En','Uk','Pl'].forEach(function(c) {
-    var b = document.getElementById('ml'+c);
-    if (b) b.classList.toggle('active', c.toLowerCase() === l);
+
+  // Desktop drop UI
+  document.querySelectorAll('.lang-opt').forEach(function(opt) {
+    opt.classList.toggle('active', opt.getAttribute('data-lang') === lang);
   });
-  document.documentElement.lang = l;
+  var lbl = document.getElementById('langLabel');
+  if (lbl) {
+    var flg = lang === 'en' ? '&#127468;&#127463; EN' : lang === 'uk' ? '&#127482;&#127462; UK' : '&#127477;&#127473; PL';
+    lbl.innerHTML = flg;
+  }
+
+  // Mobile buttons UI
+  ['En','Uk','Pl'].forEach(function(b) {
+    var btn = document.getElementById('ml'+b);
+    if (btn) btn.classList.toggle('active', b.toLowerCase() === lang);
+  });
+
+  // Keep database render refreshed with translations
+  if (window.allPhotosData) { renderGallery(); }
 }
-function setLang(l) { applyLang(l); document.getElementById('langWrap').classList.remove('open'); }
+
 function toggleLang() { document.getElementById('langWrap').classList.toggle('open'); }
-document.addEventListener('click', function(e) {
-  if (!document.getElementById('langWrap').contains(e.target))
-    document.getElementById('langWrap').classList.remove('open');
+window.addEventListener('click', function(e) {
+  if (!e.target.closest('#langWrap')) {
+    var lw = document.getElementById('langWrap');
+    if (lw) lw.classList.remove('open');
+  }
 });
 
-/* Mobile menu */
-function toggleMobileMenu() {
-  var m = document.getElementById('mobileMenu');
-  var h = document.getElementById('hamburger');
-  var open = m.classList.toggle('open');
-  h.classList.toggle('open', open);
-  document.body.style.overflow = open ? 'hidden' : '';
-}
-function closeMobileMenu() {
-  document.getElementById('mobileMenu').classList.remove('open');
-  document.getElementById('hamburger').classList.remove('open');
-  document.body.style.overflow = '';
-}
 
-/* ── GALLERY with pagination ── */
-var PHOTOS = [], lbItems = [], lbIdx = 0;
-var PAGE_SIZE = 12;
-var shownCount = 0;
+/* Database Definition */
+window.allPhotosData = [
+  { id: 1,  cat: "love",    src: "photos/love1.jpg",  date: "2025" },
+  { id: 2,  cat: "love",    src: "photos/love2.jpg",  date: "2025" },
+  { id: 3,  cat: "love",    src: "photos/love3.jpg",  date: "2024" },
+  { id: 4,  cat: "love",    src: "photos/love4.jpg",  date: "2025" },
+  { id: 5,  cat: "portrait",src: "photos/port1.jpg",  date: "2025" },
+  { id: 6,  cat: "portrait",src: "photos/port2.jpg",  date: "2024" },
+  { id: 7,  cat: "portrait",src: "photos/port3.jpg",  date: "2025" },
+  { id: 8,  cat: "portrait",src: "photos/port4.jpg",  date: "2025" },
+  { id: 9,  cat: "portrait",src: "photos/port5.jpg",  date: "2024" },
+  { id: 10, cat: "portrait",src: "photos/port6.jpg",  date: "2025" },
+  { id: 11, cat: "family",  src: "photos/fam1.jpg",   date: "2025" },
+  { id: 12, cat: "family",  src: "photos/fam2.jpg",   date: "2024" },
+  { id: 13, cat: "family",  src: "photos/fam3.jpg",   date: "2025" },
+  { id: 14, cat: "family",  src: "photos/fam4.jpg",   date: "2025" }
+];
 
-async function loadPhotos() {
-  try {
-    // Vercel API calls Cloudinary — auto-detects all photos in "daria" folder
-    var r = await fetch('/api/photos');
-    if (!r.ok) throw 0;
-    PHOTOS = await r.json();
-    if (!Array.isArray(PHOTOS)) throw 0;
-  } catch(_) {
-    PHOTOS = [];
-  }
-  lbItems = PHOTOS;
-  renderHero();
+/* Gallery Engine */
+var currentCategory = 'all';
+var visibleCount = 8;
+
+function setCategory(cat) {
+  currentCategory = cat;
+  visibleCount = 8;
+  
+  document.querySelectorAll('.cat-btn').forEach(function(btn) {
+    btn.classList.toggle('active', btn.getAttribute('data-cat') === cat);
+  });
+  
   renderGallery();
 }
 
-/* Hero: pick 4 random photos */
-function renderHero() {
-  var container = document.getElementById('heroPhotos');
-  var art = document.getElementById('heroArt');
-  if (!container || !art) return;
-
-  if (!PHOTOS || PHOTOS.length < 1) {
-    art.style.opacity = '1';
-    art.style.animation = 'fadeIn 1.4s .5s forwards ease';
+function renderGallery() {
+  var m = document.getElementById('masonry');
+  var emp = document.getElementById('galleryEmpty');
+  if (!m) return;
+  
+  // Filter items
+  var filtered = window.allPhotosData.filter(function(item) {
+    return currentCategory === 'all' || item.cat === currentCategory;
+  });
+  
+  if (filtered.length === 0) {
+    m.innerHTML = '';
+    if (emp) emp.style.display = 'block';
+    document.getElementById('showMoreBtn').classList.add('hidden');
     return;
   }
-
-  /* hide art */
-  art.style.transition = 'opacity .6s ease';
-  art.style.opacity = '0';
-  art.style.animation = 'none';
-
-  /* always fill 4 cells, repeating photos if needed */
-  var shuffled = PHOTOS.slice().sort(function() { return Math.random() - .5; });
-  var base = shuffled.slice(0, Math.min(4, shuffled.length));
-  var picks = [];
-  while (picks.length < 4) picks = picks.concat(base);
-  picks = picks.slice(0, 4);
-
-  container.innerHTML = '';
-  container.classList.add('show');
-
-  picks.forEach(function(p, i) {
-    var cell = document.createElement('div');
-    cell.className = 'hp-cell';
-    var img = document.createElement('img');
-    img.src = p.hero || p.file;
-    img.alt = 'photo';
-    img.loading = i === 0 ? 'eager' : 'lazy';
-    img.decoding = 'async';
-    img.addEventListener('load', function() { cell.classList.add('ready'); });
-    img.addEventListener('error', function() { cell.style.background = 'var(--bisque)'; });
-    cell.appendChild(img);
-    container.appendChild(cell);
+  if (emp) emp.style.display = 'none';
+  
+  // Slice to pagination
+  var pageItems = filtered.slice(0, visibleCount);
+  
+  // Map index tracking for safe global lightbox loops across categories
+  window.currentGallerySubset = filtered; 
+  
+  var html = '';
+  pageItems.forEach(function(item, idx) {
+    var label = currentLang === 'uk' ? 'Переглянути' : currentLang === 'pl' ? 'Zobacz' : 'View';
+    html += '<div class="g-item" onclick="openLightbox(' + idx + ')">' +
+              '<img src="' + item.src + '" alt="Daria Shevchenko Photography" loading="lazy" onload="imgLoaded(this)" onerror="imgError(this)">' +
+              '<div class="g-overlay">' +
+                '<span class="g-date">' + item.date + '</span>' +
+              '</div>' +
+              '<div class="g-icon" title="' + label + '">' +
+                '<svg viewBox="0 0 24 24" fill="none" stroke="var(--brown-dark)" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>' +
+              '</div>' +
+            '</div>';
   });
-
-  /* first cell spans 2 rows */
-  if (container.firstChild) container.firstChild.style.gridRow = 'span 2';
-
-  setTimeout(function() { container.classList.add('loaded'); }, 300);
-}
-
-/* Gallery: show PAGE_SIZE at a time */
-function renderGallery() {
-  var grid = document.getElementById('masonry');
-  var empty = document.getElementById('galleryEmpty');
-  var btn = document.getElementById('showMoreBtn');
-  grid.innerHTML = '';
-  shownCount = 0;
-
-  if (!PHOTOS.length) { empty.style.display = 'block'; btn.classList.add('hidden'); return; }
-  empty.style.display = 'none';
-
-  appendPhotos();
-}
-
-function appendPhotos() {
-  var grid = document.getElementById('masonry');
-  var btn = document.getElementById('showMoreBtn');
-  var batch = PHOTOS.slice(shownCount, shownCount + PAGE_SIZE);
-
-  batch.forEach(function(p, i) {
-    var idx = shownCount + i;
-    var d = document.createElement('div');
-    d.className = 'g-item';
-    d.style.transitionDelay = Math.min(i, 11) * 55 + 'ms';
-
-    var img = document.createElement('img');
-    img.src = p.thumb || p.file;
-    img.alt = 'photo';
-    img.loading = 'lazy';
-    img.decoding = 'async';
-    img.addEventListener('load', function() { d.classList.add('img-loaded'); });
-    img.addEventListener('error', function() { d.style.display = 'none'; });
-
-    var overlay = document.createElement('div');
-    overlay.className = 'g-overlay';
-    var date = document.createElement('p');
-    date.className = 'g-date'; date.textContent = p.date || '';
-    overlay.appendChild(date);
-
-    var icon = document.createElement('div');
-    icon.className = 'g-icon';
-    icon.innerHTML = '<svg viewBox="0 0 16 16" fill="none"><path d="M3 3h4v1H4v8h8v-3h1v4H3V3z" fill="#7A3B1E"/><path d="M9 3h4v4h-1V4.7L7.4 9.3l-.7-.7L11.3 4H10V3z" fill="#7A3B1E"/></svg>';
-
-    d.appendChild(img); d.appendChild(overlay); d.appendChild(icon);
-    (function(capturedIdx) {
-      d.addEventListener('click', function() { lbOpen(capturedIdx); });
-    })(idx);
-    grid.appendChild(d);
-  });
-
-  shownCount += batch.length;
-
-  /* show/hide button */
-  if (shownCount >= PHOTOS.length) {
-    btn.classList.add('hidden');
-  } else {
-    btn.classList.remove('hidden');
+  
+  m.innerHTML = html;
+  
+  // Toggle Show More button visibility
+  var sm = document.getElementById('showMoreBtn');
+  if (sm) {
+    if (filtered.length > visibleCount) sm.classList.remove('hidden');
+    else sm.classList.add('hidden');
   }
-
-  observeGallery();
+  
+  // Attach observers instantly
+  setTimeout(observeGallery, 40);
 }
 
 function showMore() {
-  appendPhotos();
+  visibleCount += 8;
+  renderGallery();
 }
 
-/* Lightbox */
-function lbOpen(i) { lbIdx = i; document.getElementById('lightbox').classList.add('open'); lbShow(); }
-function lbShow() {
+function imgLoaded(img) {
+  var item = img.closest('.g-item');
+  if (item) item.classList.add('img-loaded');
+}
+function imgError(img) {
+  var item = img.closest('.g-item');
+  if (item) {
+    item.style.background = 'var(--bisque)';
+    item.classList.add('img-loaded');
+    img.style.display = 'none';
+  }
+}
+
+
+/* Lightbox System */
+var currentLbIndex = 0;
+function openLightbox(idx) {
+  if (!window.currentGallerySubset || !window.currentGallerySubset[idx]) return;
+  currentLbIndex = idx;
+  var box = document.getElementById('lightbox');
+  box.classList.add('open');
+  updateLightboxContent();
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox(e) {
+  if (!e || e.target.id === 'lightbox' || e.target.classList.contains('lb-close')) {
+    document.getElementById('lightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+}
+
+function prevImage(e) {
+  if (e) e.stopPropagation();
+  if (!window.currentGallerySubset) return;
+  currentLbIndex = (currentLbIndex - 1 + window.currentGallerySubset.length) % window.currentGallerySubset.length;
+  updateLightboxContent();
+}
+
+function nextImage(e) {
+  if (e) e.stopPropagation();
+  if (!window.currentGallerySubset) return;
+  currentLbIndex = (currentLbIndex + 1) % window.currentGallerySubset.length;
+  updateLightboxContent();
+}
+
+function updateLightboxContent() {
   var img = document.getElementById('lbImg');
+  var cap = document.getElementById('lbCaption');
+  var data = window.currentGallerySubset[currentLbIndex];
+  if (!img || !data) return;
+  
   img.style.opacity = '0';
-  img.src = lbItems[lbIdx].full || lbItems[lbIdx].file;
-  img.onload = function() { img.style.opacity = '1'; };
-  document.getElementById('lbCap').textContent = lbItems[lbIdx].date || '';
+  setTimeout(function() {
+    img.src = data.src;
+    var catLabel = data.cat === 'love' ? (currentLang === 'uk' ? 'Історія кохання' : currentLang === 'pl' ? 'Love Story' : 'Love Story') :
+                   data.cat === 'family' ? (currentLang === 'uk' ? 'Сімейна' : currentLang === 'pl' ? 'Rodzinna' : 'Family') :
+                   (currentLang === 'uk' ? 'Портрет' : currentLang === 'pl' ? 'Portret' : 'Portrait');
+    cap.textContent = catLabel + ' — ' + data.date;
+    img.style.opacity = '1';
+  }, 150);
 }
-function lbClose() { document.getElementById('lightbox').classList.remove('open'); }
-function lbNav(d) { lbIdx = (lbIdx + d + lbItems.length) % lbItems.length; lbShow(); }
-document.getElementById('lightbox').addEventListener('click', function(e) {
-  if (e.target === e.currentTarget) lbClose();
-});
-document.addEventListener('keydown', function(e) {
-  if (!document.getElementById('lightbox').classList.contains('open')) return;
-  if (e.key === 'Escape') lbClose();
-  if (e.key === 'ArrowLeft') lbNav(-1);
-  if (e.key === 'ArrowRight') lbNav(1);
+
+// Lightbox keyboard navigations
+window.addEventListener('keydown', function(e) {
+  var lb = document.getElementById('lightbox');
+  if (lb && lb.classList.contains('open')) {
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') prevImage();
+    if (e.key === 'ArrowRight') nextImage();
+  }
 });
 
-/* Scroll animations */
+
+/* Mobile Menu Controls */
+function toggleMobileMenu() {
+  var ham = document.getElementById('hamburger');
+  var m = document.getElementById('mobileMenu');
+  if (ham && m) {
+    ham.classList.toggle('open');
+    m.classList.toggle('open');
+    document.body.style.overflow = m.classList.contains('open') ? 'hidden' : '';
+  }
+}
+function closeMobileMenu() {
+  var ham = document.getElementById('hamburger');
+  var m = document.getElementById('mobileMenu');
+  if (ham && m) {
+    ham.classList.remove('open');
+    m.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+}
+
+
+/* Hero Right Collage Loader */
+function buildHeroCollage() {
+  var hp = document.getElementById('heroPhotos');
+  var ha = document.getElementById('heroArt');
+  if (!hp) return;
+  
+  // Collect 3 crisp vertical or horizontal pieces safely from the array portfolio
+  var items = window.allPhotosData.slice(0, 3);
+  if (items.length < 3) return; // Fallback directly to original SVG geometry art if missing assets
+
+  var html = '';
+  items.forEach(function(item) {
+    html += '<div class="hp-cell"><img src="' + item.src + '" alt="Daria Shevchenko Studio"></div>';
+  });
+  hp.innerHTML = html;
+  
+  // Reveal layer logic
+  hp.classList.add('show');
+  if (ha) ha.style.display = 'none';
+
+  // Smooth transform scaling activation 
+  var cells = hp.querySelectorAll('.hp-cell');
+  var loadedCount = 0;
+  cells.forEach(function(cell) {
+    var img = cell.querySelector('img');
+    if (img) {
+      if (img.complete) {
+        handleCellReady(cell);
+      } else {
+        img.onload = function() { handleCellReady(cell); };
+        img.onerror = function() {
+          // If a picture fails, fallback completely to the beautiful safe abstract vector structure
+          hp.classList.remove('loaded','show');
+          if (ha) ha.style.display = 'block';
+        };
+      }
+    }
+  });
+
+  function handleCellReady(cell) {
+    loadedCount++;
+    cell.classList.add('ready');
+    if (loadedCount === 3) {
+      hp.classList.add('loaded');
+    }
+  }
+}
+
+
+/* Intersection Observers */
 function makeObserver(sel, cls, thr) {
   cls = cls || 'in'; thr = thr || 0.12;
   var obs = new IntersectionObserver(function(es) {
@@ -808,16 +872,27 @@ function initAnimations() {
 
 
 
-/* Loader */
+/* Loader Initialization */
 function hideLoader() { var l = document.getElementById('loader'); if (l) l.classList.add('gone'); }
 if (document.readyState === 'complete') { setTimeout(hideLoader, 300); }
-else { window.addEventListener('DOMContentLoaded', function() { setTimeout(hideLoader, 500); }); }
+else { window.addEventListener('load', function() { setTimeout(hideLoader, 350); }); }
 
-/* Init */
-document.getElementById('yr').textContent = new Date().getFullYear();
-applyLang(lang);
-loadPhotos();
-initAnimations();
+
+/* Core Orchestration on Boot */
+document.addEventListener('DOMContentLoaded', function() {
+  // 1. Language checks
+  var saved = localStorage.getItem('daria_lang');
+  var userLang = saved || (navigator.language || navigator.userLanguage).substring(0,2).toLowerCase();
+  if (userLang !== 'uk' && userLang !== 'pl') userLang = 'en';
+  setLang(userLang);
+
+  // 2. Build layouts
+  buildHeroCollage();
+  renderGallery();
+
+  // 3. Trigger tracking hooks
+  initAnimations();
+});
 </script>
 </body>
 </html>

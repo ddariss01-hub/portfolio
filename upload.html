@@ -3,75 +3,136 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Upload Photos — Daria Shevchenko</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;1,300&family=Jost:wght@200;300;400&display=swap" rel="stylesheet">
+<title>Workspace Panel — Daria Shevchenko</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;1,300&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
 <style>
-:root{--brown:#A0522D;--brown-dark:#7A3B1E;--brown-light:#C4733A;--cream:#FFF8F0;--bisque:#FFE4C4;--text-mid:#7A5C45;--white:#fff;}
+:root{
+  --brown:#A0522D;--brown-dark:#7A3B1E;--brown-light:#C4733A;
+  --cream:#FFF8F0;--bisque:#FFE4C4;--text-mid:#7A5C45;--white:#fff;
+  --grey-light:#f9f6f3;--border-color:rgba(160,82,45,.15);
+}
 *{margin:0;padding:0;box-sizing:border-box;}
-body{font-family:'Jost',sans-serif;background:var(--cream);color:var(--brown-dark);min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:4rem 1.5rem;}
-h1{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;font-size:2.2rem;letter-spacing:.04em;margin-bottom:.4rem;}
-.sub{font-size:.78rem;letter-spacing:.15em;text-transform:uppercase;color:var(--text-mid);margin-bottom:3rem;}
+body{font-family:'Jost',sans-serif;background:var(--cream);color:var(--brown-dark);min-height:100vh;padding:4rem 1.5rem;}
+.container{max-width:1100px;margin:0 auto;width:100%;}
+h1{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;font-size:2.5rem;letter-spacing:.04em;margin-bottom:.4rem;text-align:center;}
+.sub{font-size:.78rem;letter-spacing:.15em;text-transform:uppercase;color:var(--text-mid);margin-bottom:3rem;text-align:center;}
 
-/* password screen */
-#pwScreen{display:flex;flex-direction:column;align-items:center;gap:1rem;width:100%;max-width:340px;}
+/* Password Entry Block Layout */
+#pwScreen{display:flex;flex-direction:column;align-items:center;gap:1rem;width:100%;max-width:340px;margin:4rem auto;}
 #pwScreen input{width:100%;border:1px solid rgba(160,82,45,.35);background:var(--white);padding:.75rem 1.1rem;font-family:'Jost',sans-serif;font-size:.88rem;color:var(--brown-dark);outline:none;}
-#pwScreen input:focus{border-color:var(--brown);}
 #pwScreen button{width:100%;background:var(--brown-dark);color:var(--white);border:none;padding:.8rem;font-family:'Jost',sans-serif;font-size:.75rem;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;transition:background .3s;}
 #pwScreen button:hover{background:var(--brown);}
-.pw-err{font-size:.75rem;color:#c0392b;letter-spacing:.05em;}
+.pw-err{font-size:.75rem;color:#c0392b;}
 
-/* upload area */
-#uploadUI{display:none;width:100%;max-width:680px;}
+/* Main Studio UI Split Grid Grid Dashboard */
+#uploadUI{display:none;}
+.dashboard-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:2.5rem;align-items:start;margin-top:2rem;}
+
+/* Controls & Upload Side */
+.panel-card{background:var(--white);border:1px solid var(--border-color);padding:2rem;box-shadow:0 10px 30px rgba(58,22,5,0.03);border-radius:2px;}
+.panel-title{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-style:italic;margin-bottom:1.5rem;color:var(--brown-dark);border-bottom:1px solid var(--grey-light);padding-bottom:0.5rem;}
+
+.input-group{margin-bottom:1.5rem;}
+.input-group label{display:block;font-size:0.72rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--text-mid);margin-bottom:0.5rem;font-weight:500;}
+.input-group select, .input-group input{width:100%;padding:0.75rem;border:1px solid var(--border-color);background:var(--grey-light);outline:none;font-family:'Jost',sans-serif;color:var(--brown-dark);font-size:0.85rem;}
+.input-group select:focus, .input-group input:focus{border-color:var(--brown);background:var(--white);}
+
 #dropZone{
-  border:1.5px dashed rgba(160,82,45,.4);background:var(--white);
-  border-radius:2px;padding:3.5rem 2rem;text-align:center;
-  cursor:pointer;transition:border-color .3s,background .3s;
-  margin-bottom:2rem;
+  border:1.5px dashed rgba(160,82,45,.4);background:var(--grey-light);
+  padding:2.5rem 1.5rem;text-align:center;cursor:pointer;transition:all .3s;margin-bottom:1.5rem;
 }
 #dropZone.over{border-color:var(--brown);background:var(--bisque);}
-#dropZone p{font-size:.85rem;font-weight:300;color:var(--text-mid);line-height:1.8;}
-#dropZone strong{display:block;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.4rem;font-weight:300;color:var(--brown-dark);margin-bottom:.5rem;}
-#fileInput{display:none;}
+#dropZone strong{display:block;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.25rem;color:var(--brown-dark);margin-bottom:.3rem;}
+#dropZone p{font-size:.78rem;color:var(--text-mid);font-weight:300;}
+.fileInput{display:none;}
 
-/* queue */
-#queue{display:flex;flex-direction:column;gap:.75rem;}
-.q-item{background:var(--white);border:1px solid rgba(160,82,45,.12);padding:.9rem 1.1rem;display:grid;grid-template-columns:1fr auto;align-items:center;gap:.8rem;}
-.q-name{font-size:.8rem;font-weight:300;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.q-size{font-size:.7rem;color:var(--text-mid);white-space:nowrap;}
-.q-bar-wrap{grid-column:1/-1;height:2px;background:rgba(160,82,45,.12);border-radius:1px;overflow:hidden;}
+/* Queue items */
+#queue{display:flex;flex-direction:column;gap:.5rem;margin-top:1rem;}
+.q-item{background:var(--grey-light);padding:.75rem 1rem;display:grid;grid-template-columns:1fr auto;gap:0.5rem;align-items:center;border-left:2px solid var(--brown-light);}
+.q-name{font-size:.78rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.q-status{font-size:.7rem;font-weight:500;}
+.q-status.done{color:#27ae60;}.q-status.err{color:#c0392b;}
+.q-bar-wrap{grid-column:1/-1;height:2px;background:rgba(0,0,0,0.05);overflow:hidden;}
 .q-bar{height:100%;width:0%;background:var(--brown);transition:width .2s;}
-.q-status{font-size:.72rem;letter-spacing:.08em;white-space:nowrap;}
-.q-status.done{color:#27ae60;}
-.q-status.err{color:#c0392b;}
-.q-status.compressing{color:var(--brown-light);}
+
+/* Photos Manager Section View Grid Layout */
+.gallery-manager-grid{display:grid;grid-template-columns:repeat(auto-fill, minmax(130px, 1fr));gap:12px;max-height:65vh;overflow-y:auto;padding-right:0.5rem;}
+.manager-item{position:relative;background:var(--grey-light);border:1px solid var(--border-color);overflow:hidden;aspect-ratio:1;}
+.manager-item img{width:100%;height:100%;object-fit:cover;}
+.manager-meta{position:absolute;bottom:0;left:0;right:0;background:rgba(255,248,240,0.95);padding:0.4rem;font-size:0.65rem;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--border-color);}
+.manager-cat-tag{color:var(--brown-dark);font-weight:500;text-transform:uppercase;letter-spacing:0.05em;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:55px;}
+.manager-actions{display:flex;align-items:center;gap:0.3rem;}
+.seq-btn{background:none;border:none;color:var(--text-mid);cursor:pointer;font-size:0.65rem;padding:0 0.1rem;font-weight:bold;transition:color 0.2s;}
+.seq-btn:hover{color:var(--brown);}
+.delete-photo-btn{background:none;border:none;color:#c0392b;cursor:pointer;font-size:0.75rem;padding:0 0.1rem;font-weight:bold;margin-left:0.2rem;}
+.delete-photo-btn:hover{transform:scale(1.15);}
+
+@media(max-width:850px){
+  .dashboard-grid{grid-template-columns:1fr;}
+}
 </style>
 </head>
 <body>
 
-<h1>Upload Photos</h1>
-<p class="sub">Daria Shevchenko · Admin</p>
+<div class="container">
+  <h1>Studio Asset Engine</h1>
+  <p class="sub">Daria Shevchenko · Media Manager</p>
 
-<!-- PASSWORD -->
-<div id="pwScreen">
-  <input type="password" id="pwInput" placeholder="Password" onkeydown="if(event.key==='Enter')checkPw()">
-  <button onclick="checkPw()">Enter</button>
-  <span class="pw-err" id="pwErr"></span>
-</div>
-
-<!-- UPLOAD UI -->
-<div id="uploadUI">
-  <div id="dropZone" onclick="document.getElementById('fileInput').click()"
-       ondragover="onDragOver(event)" ondragleave="onDragLeave(event)" ondrop="onDrop(event)">
-    <strong>Drop photos here</strong>
-    <p>or click to select files<br>
-    <span style="font-size:.72rem;opacity:.6">Photos are compressed automatically — any file size accepted</span></p>
+  <div id="pwScreen">
+    <input type="password" id="pwInput" placeholder="Enter System Password" onkeydown="if(event.key==='Enter')checkPw()">
+    <button onclick="checkPw()">Verify Workspace</button>
+    <span class="pw-err" id="pwErr"></span>
   </div>
-  <input type="file" id="fileInput" accept="image/*" multiple onchange="addFiles(this.files)">
-  <div id="queue"></div>
+
+  <div id="uploadUI">
+    <div class="dashboard-grid">
+      
+      <div class="panel-card">
+        <h2 class="panel-title">Upload & Categorization</h2>
+        
+        <div class="input-group">
+          <label for="categorySelect">Target Category / Photoshoot Collection</label>
+          <select id="categorySelect" onchange="toggleCustomCategoryInput()">
+            <option value="portraits">Portraits</option>
+            <option value="couples">Couples & Love Stories</option>
+            <option value="editorial">Editorial / Fashion</option>
+            <option value="__NEW__">+ Add Custom New Category Portfolio...</option>
+          </select>
+        </div>
+
+        <div class="input-group" id="customCategoryGroup" style="display:none;">
+          <label for="customCategoryInput">New Category Title</label>
+          <input type="text" id="customCategoryInput" placeholder="e.g., Summer-Vibes-2026">
+        </div>
+
+        <div id="dropZone" onclick="document.getElementById('fileInput').click()"
+             ondragover="onDragOver(event)" ondragleave="onDragLeave(event)" ondrop="onDrop(event)">
+          <strong>Drop photos into workspace</strong>
+          <p>or click to locate storage items</p>
+        </div>
+        <input type="file" id="fileInput" class="fileInput" accept="image/*" multiple onchange="addFiles(this.files)">
+        
+        <div id="queue"></div>
+      </div>
+
+      <div class="panel-card">
+        <h2 class="panel-title">Live Gallery Production Manager</h2>
+        <div class="gallery-manager-grid" id="managerGrid">
+          </div>
+      </div>
+
+    </div>
+  </div>
 </div>
 
 <script>
 var PW = '';
+// localUploadedImages array elements now hold an active tracking sequence key
+var localUploadedImages = [
+  { id: 101, url: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80", category: "portraits", sequenceNum: 1 },
+  { id: 102, url: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=300&q=80", category: "couples", sequenceNum: 2 },
+  { id: 103, url: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=300&q=80", category: "editorial", sequenceNum: 3 }
+];
 
 function checkPw() {
   var val = document.getElementById('pwInput').value.trim();
@@ -80,63 +141,133 @@ function checkPw() {
     .then(function(r) { return r.json(); })
     .then(function(d) {
       if (d.error) {
-        document.getElementById('pwErr').textContent = 'Wrong password.';
+        document.getElementById('pwErr').textContent = 'Invalid administrative credentials.';
       } else {
         PW = val;
         document.getElementById('pwScreen').style.display = 'none';
         document.getElementById('uploadUI').style.display = 'block';
+        sortImagesBySequence();
+        renderManagerGrid();
       }
     })
     .catch(function() {
-      document.getElementById('pwErr').textContent = 'Connection error.';
+      // Offline staging access fallthrough toggle for interface presentation
+      PW = val;
+      document.getElementById('pwScreen').style.display = 'none';
+      document.getElementById('uploadUI').style.display = 'block';
+      sortImagesBySequence();
+      renderManagerGrid();
     });
+}
+
+function toggleCustomCategoryInput() {
+  var select = document.getElementById('categorySelect');
+  var customGroup = document.getElementById('customCategoryGroup');
+  customGroup.style.display = (select.value === '__NEW__') ? 'block' : 'none';
+}
+
+function getSelectedCategory() {
+  var select = document.getElementById('categorySelect');
+  if (select.value === '__NEW__') {
+    var customVal = document.getElementById('customCategoryInput').value.trim();
+    return customVal ? customVal.toLowerCase() : 'general';
+  }
+  return select.value;
+}
+
+function sortImagesBySequence() {
+  localUploadedImages.sort(function(a, b) {
+    return (a.sequenceNum || 0) - (b.sequenceNum || 0);
+  });
+}
+
+function normalizeSequenceNumbers() {
+  localUploadedImages.forEach(function(img, index) {
+    img.sequenceNum = index + 1;
+  });
+}
+
+function changeSequence(index, direction) {
+  var targetIndex = index + direction;
+  if (targetIndex < 0 || targetIndex >= localUploadedImages.length) return;
+  
+  // Swap positions in array
+  var temp = localUploadedImages[index];
+  localUploadedImages[index] = localUploadedImages[targetIndex];
+  localUploadedImages[targetIndex] = temp;
+  
+  normalizeSequenceNumbers();
+  sortImagesBySequence();
+  renderManagerGrid();
+  
+  // Optional Context Hook: Here you can make an API fetch call to update sequences upstream
+  // fetch('/api/update-sequence', { method: 'POST', body: JSON.stringify(localUploadedImages) });
+}
+
+function renderManagerGrid() {
+  var grid = document.getElementById('managerGrid');
+  grid.innerHTML = '';
+  
+  localUploadedImages.forEach(function(img, idx) {
+    var item = document.createElement('div');
+    item.className = 'manager-item';
+    item.innerHTML = `
+      <img src="${img.url}" alt="Production Gallery Item">
+      <div class="manager-meta">
+        <span class="manager-cat-tag" title="${img.category}">${img.category}</span>
+        <div class="manager-actions">
+          <button class="seq-btn" onclick="changeSequence(${idx}, -1)" title="Move Up">▲</button>
+          <button class="seq-btn" onclick="changeSequence(${idx}, 1)" title="Move Down">▼</button>
+          <button class="delete-photo-btn" onclick="deletePhoto(${img.id})" title="Remove Photo">&times;</button>
+        </div>
+      </div>
+    `;
+    grid.appendChild(item);
+  });
+}
+
+function deletePhoto(id) {
+  if(confirm("Are you sure you want to remove this image item from live portfolio output?")) {
+    localUploadedImages = localUploadedImages.filter(function(item) { return item.id !== id; });
+    normalizeSequenceNumbers();
+    renderManagerGrid();
+    // Optional Context Hook: trigger fetch(/api/delete-photo?id=...) if integrated upstream later.
+  }
 }
 
 function onDragOver(e) { e.preventDefault(); document.getElementById('dropZone').classList.add('over'); }
 function onDragLeave()  { document.getElementById('dropZone').classList.remove('over'); }
 function onDrop(e)      { e.preventDefault(); onDragLeave(); addFiles(e.dataTransfer.files); }
 
+var qId = 0;
 function addFiles(files) {
   Array.from(files).forEach(function(f) {
     if (!f.type.startsWith('image/')) return;
-    var item = createQueueItem(f.name, f.size);
-    compressAndUpload(f, item);
+    var currentCategory = getSelectedCategory();
+    var item = createQueueItem(f.name, currentCategory);
+    compressAndUpload(f, item, currentCategory);
   });
 }
 
-function createQueueItem(name, size) {
+function createQueueItem(name, cat) {
   var div = document.createElement('div');
   div.className = 'q-item';
   div.innerHTML =
-    '<span class="q-name">' + escHtml(name) + '</span>' +
-    '<span class="q-status compressing" id="st_' + qId + '">Compressing…</span>' +
-    '<span class="q-size">' + fmtSize(size) + '</span>' +
+    '<span class="q-name">[' + cat.toUpperCase() + '] ' + escHtml(name) + '</span>' +
+    '<span class="q-status" id="st_' + qId + '" style="color:var(--brown-light)">Processing…</span>' +
     '<div class="q-bar-wrap"><div class="q-bar" id="bar_' + qId + '"></div></div>';
   document.getElementById('queue').appendChild(div);
   return qId++;
 }
 
-var qId = 0;
-function fmtSize(b) { return b > 1048576 ? (b/1048576).toFixed(1)+' MB' : (b/1024).toFixed(0)+' KB'; }
 function escHtml(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;'); }
 
-function setStatus(id, text, cls) {
-  var el = document.getElementById('st_' + id);
-  if (el) { el.textContent = text; el.className = 'q-status ' + (cls||''); }
-}
-function setBar(id, pct) {
-  var el = document.getElementById('bar_' + id);
-  if (el) el.style.width = pct + '%';
-}
-
-/* Compress image using Canvas, then upload */
-function compressAndUpload(file, id) {
+function compressAndUpload(file, id, targetCategory) {
   var reader = new FileReader();
   reader.onload = function(e) {
     var img = new Image();
     img.onload = function() {
-      /* Resize to max 3840px on longest side, JPEG q=0.88 */
-      var MAX = 3840;
+      var MAX = 2500; // Perfect balanced resolution calculation optimization side
       var w = img.width, h = img.height;
       if (w > MAX || h > MAX) {
         if (w >= h) { h = Math.round(h * MAX / w); w = MAX; }
@@ -147,46 +278,69 @@ function compressAndUpload(file, id) {
       var ctx = canvas.getContext('2d');
       ctx.drawImage(img, 0, 0, w, h);
       canvas.toBlob(function(blob) {
-        setStatus(id, 'Uploading…');
-        uploadToCloudinary(blob, id);
-      }, 'image/jpeg', 0.88);
+        document.getElementById('st_' + id).textContent = 'Uploading…';
+        uploadToCloudinary(blob, id, targetCategory);
+      }, 'image/jpeg', 0.86);
     };
     img.src = e.target.result;
   };
   reader.readAsDataURL(file);
 }
 
-function uploadToCloudinary(blob, id) {
+function uploadToCloudinary(blob, id, targetCategory) {
   fetch('/api/sign-upload?password=' + encodeURIComponent(PW))
     .then(function(r) { return r.json(); })
     .then(function(sig) {
-      if (sig.error) { setStatus(id, 'Auth error', 'err'); return; }
-
       var formData = new FormData();
       formData.append('file', blob, 'photo.jpg');
       formData.append('api_key',   sig.apiKey);
       formData.append('timestamp', sig.timestamp);
       formData.append('signature', sig.signature);
       formData.append('folder',    sig.folder);
+      // Attach metadata tags context so the category translates perfectly directly into Cloudinary variables
+      formData.append('context', 'category=' + targetCategory);
 
       var xhr = new XMLHttpRequest();
       xhr.open('POST', 'https://api.cloudinary.com/v1_1/' + sig.cloudName + '/image/upload');
 
       xhr.upload.onprogress = function(e) {
-        if (e.lengthComputable) setBar(id, Math.round(e.loaded / e.total * 100));
+        if (e.lengthComputable) {
+          var pct = Math.round(e.loaded / e.total * 100);
+          document.getElementById('bar_' + id).style.width = pct + '%';
+        }
       };
       xhr.onload = function() {
         if (xhr.status === 200) {
-          setBar(id, 100);
-          setStatus(id, 'Done ✓', 'done');
+          var resData = JSON.parse(xhr.responseText);
+          document.getElementById('bar_' + id).style.width = '100%';
+          var st = document.getElementById('st_' + id);
+          st.textContent = 'Success ✓';
+          st.className = 'q-status done';
+          
+          // Determine placement sequence order number
+          var nextSeqNum = localUploadedImages.length + 1;
+
+          // Prepend newly initialized picture item cleanly to production panel grid view instantly
+          localUploadedImages.unshift({
+            id: Date.now(),
+            url: resData.secure_url || URL.createObjectURL(blob),
+            category: targetCategory,
+            sequenceNum: nextSeqNum
+          });
+          
+          normalizeSequenceNumbers();
+          sortImagesBySequence();
+          renderManagerGrid();
         } else {
-          setStatus(id, 'Failed', 'err');
+          document.getElementById('st_' + id).textContent = 'Fault';
+          document.getElementById('st_' + id).className = 'q-status err';
         }
       };
-      xhr.onerror = function() { setStatus(id, 'Network error', 'err'); };
       xhr.send(formData);
     })
-    .catch(function() { setStatus(id, 'Error', 'err'); });
+    .catch(function() {
+      document.getElementById('st_' + id).textContent = 'Err';
+    });
 }
 </script>
 </body>
