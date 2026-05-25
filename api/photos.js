@@ -10,7 +10,7 @@ module.exports = async function(req, res) {
   const apiSecret = process.env.CLOUDINARY_API_SECRET;
 
   if (!cloudName || !apiKey || !apiSecret) {
-    return res.status(500).json({ error: 'Missing Cloudinary env vars' });
+    return res.status(500).json({ error: 'Missing env vars' });
   }
 
   try {
@@ -18,20 +18,21 @@ module.exports = async function(req, res) {
     // Added context to query so we can retrieve custom categories safely
     const url  = 'https://api.cloudinary.com/v1_1/' + cloudName +
                  '/resources/image?prefix=daria/&type=upload&max_results=500&context=true';
+                 '/resources/image?max_results=500&type=upload';
 
-    const data = await new Promise(function(resolve, reject) {
+    const raw = await new Promise(function(resolve, reject) {
       https.get(url, { headers: { 'Authorization': 'Basic ' + auth } }, function(r) {
         let body = '';
         r.on('data', function(chunk) { body += chunk; });
-        r.on('end', function() { resolve(JSON.parse(body)); });
+        r.on('end', function() { resolve(body); });
         r.on('error', reject);
       }).on('error', reject);
     });
 
-    const resources = (data.resources || [])
-      .sort(function(a, b) {
-        return new Date(b.created_at) - new Date(a.created_at);
-      });
+    const data = JSON.parse(raw);
+    const resources = (data.resources || []).sort(function(a, b) {
+      return new Date(b.created_at) - new Date(a.created_at);
+    });
 
     const photos = resources.map(function(img) {
       const d     = new Date(img.created_at);
