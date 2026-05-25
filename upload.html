@@ -151,7 +151,7 @@ function checkPw() {
 }
 
 function fetchExistingPhotos() {
-  fetch('/api/get-photos')
+  fetch('/api/photos')
     .then(function(r) { return r.json(); })
     .then(function(photos) {
       localUploadedImages = photos.map(function(img, index) {
@@ -293,7 +293,7 @@ function compressAndUpload(file, id, targetCategory) {
 }
 
 function uploadToCloudinary(blob, id, targetCategory) {
-  fetch('/api/sign-upload?password=' + encodeURIComponent(PW))
+  fetch('/api/sign-upload?password=' + encodeURIComponent(PW) + '&category=' + encodeURIComponent(targetCategory))
     .then(function(r) { return r.json(); })
     .then(function(sig) {
       var formData = new FormData();
@@ -302,9 +302,7 @@ function uploadToCloudinary(blob, id, targetCategory) {
       formData.append('timestamp', sig.timestamp);
       formData.append('signature', sig.signature);
       formData.append('folder',    sig.folder);
-      
-      // Perfectly matches the alpha order configuration from backend token signing
-      formData.append('context', 'category=general');
+      formData.append('context',   'category=' + sig.category);
 
       var xhr = new XMLHttpRequest();
       xhr.open('POST', 'https://api.cloudinary.com/v1_1/' + sig.cloudName + '/image/upload');
