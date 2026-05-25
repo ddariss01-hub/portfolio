@@ -126,6 +126,10 @@ nav.scrolled{padding:.8rem 3rem;box-shadow:0 2px 24px rgba(58,22,5,.09);}
 .sec-title em{font-style:italic;color:var(--brown-light);}
 
 /* ── GALLERY ── */
+.filter-bar{display:flex;justify-content:center;gap:.7rem;flex-wrap:wrap;padding:1.8rem 2rem 1rem;}
+.cat-btn{background:transparent;border:1px solid rgba(160,82,45,.28);color:var(--text-mid);padding:.45rem 1.5rem;font-family:'Jost',sans-serif;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;transition:all .3s;}
+.cat-btn:hover{border-color:var(--brown);color:var(--brown);}
+.cat-btn.active{background:var(--brown);color:var(--white);border-color:var(--brown);}
 .gallery-wrap{padding:0 1.5rem 3rem;}
 .masonry{columns:4;column-gap:8px;max-width:1500px;margin:0 auto;}
 .g-item{break-inside:avoid;margin-bottom:12px;position:relative;overflow:hidden;cursor:pointer;opacity:0;transform:translateY(36px) scale(.97);transition:opacity .75s ease,transform .75s ease;border-radius:2px;}
@@ -362,6 +366,9 @@ footer small{font-size:.68rem;letter-spacing:.1em;color:rgba(255,228,196,.4);}
     <h2 class="sec-title reveal" style="transition-delay:.15s" data-t="gal_title_h">Collections &amp; <em>Stories</em></h2>
   </div>
   <div class="stripe reveal" style="transition-delay:.3s"></div>
+  <div class="filter-bar" id="filterBar">
+    <button class="cat-btn active" data-cat="all" onclick="setCategory('all')" data-t="cat_all">All</button>
+  </div>
   <div class="gallery-wrap">
     <div class="masonry" id="masonry"></div>
     <p class="gallery-empty" id="galleryEmpty" data-t="gal_empty">No photos yet.</p>
@@ -495,12 +502,13 @@ var dict = {
     nav_portfolio: "Portfolio", nav_about: "About", nav_pricing: "Pricing", nav_contact: "Contact",
     hero_eyebrow: "Photography by Daria Shevchenko",
     hero_title_h: "Capturing<br><em>moments</em><br>that last.",
-    hero_sub: "Portrait & love story photography based in Warsaw. Every frame tells a story only you can live.",
+    hero_sub: "Portrait, family and love story photography in Warsaw. Each frame tells a unique story filled with emotions and genuine moments.",
     hero_cta: "Explore portfolio", scroll: "Scroll",
     gal_tag: "Portfolio", gal_title_h: "Collections & <em>Stories</em>", gal_empty: "No photos yet.",
+    cat_all: "All", cat_portraits: "Portraits", cat_couples: "Love Story", cat_editorial: "Editorial", cat_family: "Family", cat_general: "General",
     show_more: "Show more",
     about_tag: "About", about_title_h: "The <em>artist</em><br>behind the lens",
-    about_body: "I'm Daria — a photographer based in Warsaw with a passion for capturing raw emotion and authentic beauty. My work spans heartfelt portraits, love stories, and family moments.",
+    about_body: "I'm Daria — a photographer based in Warsaw. I love capturing sincere emotions, genuine beauty, and moments worth coming back to. I create heartfelt portraits, love stories, and warm family memories.",
     about_quote: '"I don\'t just take photos — I preserve feelings."',
     price_tag: "Pricing", price_title_h: "Every moment deserves a <em>frame</em>",
     price_p_name: "Portrait", price_p_desc: "A personal session focused entirely on you — your expression, your light, your story.",
@@ -516,13 +524,14 @@ var dict = {
   uk: {
     nav_portfolio: "Портфоліо", nav_about: "Про мене", nav_pricing: "Ціни", nav_contact: "Контакти",
     hero_eyebrow: "Фотограф Дарія Шевченко",
-    hero_title_h: "Зберігаю<br><em>моменти</em>,<br>що тривають вічно.",
-    hero_sub: "Портретна та історія кохання зйомка у Варшаві. Кожен кадр — це особлива історія, яку проживаєте саме ви.",
+    hero_title_h: "Зберігаю миті,<br>що залишаються<br><em>назавжди</em>",
+    hero_sub: "Портретна, сімейна та love story фотографія у Варшаві. Кожен кадр розповідає особливу історію, сповнену емоцій і справжніх моментів.",
     hero_cta: "Дивитись портфоліо", scroll: "Скролл",
     gal_tag: "Портфоліо", gal_title_h: "Колекції та <em>Історії</em>", gal_empty: "Фотографій поки немає.",
+    cat_all: "Усі", cat_portraits: "Портрети", cat_couples: "Лав-сторі", cat_editorial: "Редакційна", cat_family: "Сімейні", cat_general: "Загальне",
     show_more: "Показати більше",
     about_tag: "Про мене", about_title_h: "<em>Митець</em><br>за об'єктивом",
-    about_body: "Я Дарія — фотограф, яка живе у Варшаві та прагне фіксувати щирі емоції й справжню красу. Створюю зворушливі портрети, історії кохання та сімейні спогади.",
+    about_body: "Я — Дар'я, фотограф з Варшави. Люблю фіксувати щирі емоції, справжню красу та моменти, до яких хочеться повертатися. Створюю зворушливі портрети, історії кохання й теплі сімейні спогади.",
     about_quote: '«Я не просто роблю знімки — я зберігаю ваші почуття.»',
     price_tag: "Ціни", price_title_h: "Кожна мить варта свого <em>кадру</em>",
     price_p_name: "Портрет", price_p_desc: "Індивідуальна сесія, зосереджена виключно на вас — ваші емоції, ваше світло, ваша краса.",
@@ -538,10 +547,11 @@ var dict = {
   pl: {
     nav_portfolio: "Portfolio", nav_about: "O mnie", nav_pricing: "Cennik", nav_contact: "Kontakt",
     hero_eyebrow: "Fotografia — Daria Shevchenko",
-    hero_title_h: "Chwytam<br><em>momenty</em>,<br>które trwają.",
-    hero_sub: "Fotografia portretowa i love story w Warszawie. Każdy kadr opowiada wyjątkową historię, którą żyjesz tylko Ty.",
+    hero_title_h: "Zatrzymuję<br><em>chwile</em><br>na zawsze",
+    hero_sub: "Fotografia portretowa, rodzinna i love story w Warszawie. Każdy kadr opowiada wyjątkową historię pełną emocji i prawdziwych chwil.",
     hero_cta: "Zobacz portfolio", scroll: "Przewiń",
     gal_tag: "Portfolio", gal_title_h: "Kolekcje i <em>Historie</em>", gal_empty: "Brak zdjęć w galerii.",
+    cat_all: "Wszystkie", cat_portraits: "Portrety", cat_couples: "Love Story", cat_editorial: "Editorial", cat_family: "Rodzinne", cat_general: "Ogólne",
     show_more: "Pokaż więcej",
     about_tag: "O mnie", about_title_h: "<em>Artystka</em><br>za obiektywem",
     about_body: "Mam na imię Daria — jestem fotografką pracującą w Warszawie, z pasją uwieczniającą czyste emocje i autentyczne piękno. Tworzę osobiste portrety, historie miłosne oraz kadry rodzinne.",
@@ -601,6 +611,7 @@ function setLang(lang) {
 
   // Keep database render refreshed with translations
   if (window.allPhotosData) { renderGallery(); }
+  buildCategoryFilters();
 }
 
 function toggleLang() { document.getElementById('langWrap').classList.toggle('open'); }
@@ -632,10 +643,54 @@ function loadPhotos() {
       });
       buildHeroCollage();
       renderGallery();
+      buildCategoryFilters();
     })
     .catch(function(err) {
       console.error('Failed to load photos:', err);
     });
+}
+
+/* Category filter bar */
+var CAT_KEY_MAP = {
+  portraits: 'cat_portraits',
+  couples:   'cat_couples',
+  editorial: 'cat_editorial',
+  family:    'cat_family',
+  general:   'cat_general'
+};
+
+function buildCategoryFilters() {
+  var bar = document.getElementById('filterBar');
+  if (!bar) return;
+
+  // Collect unique categories present in loaded photos
+  var seen = {};
+  (window.allPhotosData || []).forEach(function(item) {
+    if (item.cat) seen[item.cat] = true;
+  });
+  var cats = Object.keys(seen);
+
+  // Remove old dynamic buttons (keep the static "All" button)
+  bar.querySelectorAll('.cat-btn[data-dynamic]').forEach(function(b) { b.remove(); });
+
+  // Hide filter bar if no categories yet
+  if (cats.length === 0) { bar.style.display = 'none'; return; }
+  bar.style.display = '';
+
+  var lang = typeof currentLang !== 'undefined' ? currentLang : 'en';
+  var d = dict[lang] || {};
+
+  cats.sort().forEach(function(cat) {
+    var key   = CAT_KEY_MAP[cat] || ('cat_' + cat);
+    var label = d[key] || (cat.charAt(0).toUpperCase() + cat.slice(1));
+    var btn   = document.createElement('button');
+    btn.className   = 'cat-btn';
+    btn.setAttribute('data-cat', cat);
+    btn.setAttribute('data-dynamic', '1');
+    btn.textContent = label;
+    btn.onclick = function() { setCategory(cat); };
+    bar.appendChild(btn);
+  });
 }
 
 /* Gallery Engine */
