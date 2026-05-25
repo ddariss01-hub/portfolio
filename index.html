@@ -103,15 +103,28 @@ nav.scrolled{padding:.8rem 3rem;box-shadow:0 2px 24px rgba(58,22,5,.09);}
 .hero-right{position:relative;overflow:hidden;background:var(--bisque);}
 .hero-art{position:absolute;inset:0;opacity:0;animation:fadeIn 1.4s .5s forwards ease;}
 .hero-art svg{width:100%;height:100%;}
-.hero-photos{position:absolute;inset:0;display:none;grid-template-columns:1.1fr .9fr;grid-template-rows:1.15fr .85fr;gap:3px;padding:3px;opacity:0;transition:opacity .8s ease;}
+.hero-photos{
+  position:absolute;inset:0;display:none;
+  grid-template-columns:1.25fr 0.85fr 0.9fr;
+  grid-template-rows:1.3fr 0.85fr 1fr;
+  gap:5px;padding:10px;
+  opacity:0;transition:opacity .9s ease;
+}
 .hero-photos.show{display:grid;}
 .hero-photos.loaded{opacity:1;}
-.hp-cell{overflow:hidden;background:var(--bisque);}
-.hp-cell:first-child{grid-row:span 2;}
-.hp-cell img{width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.06);transition:transform 9s ease;}
+/* Cell positions — 5-photo editorial mosaic */
+.hp-cell{overflow:hidden;background:var(--bisque);border-radius:2px;}
+.hp-cell:nth-child(1){grid-column:1;grid-row:1/4;}       /* tall left — spans full height */
+.hp-cell:nth-child(2){grid-column:2;grid-row:1;}          /* top centre */
+.hp-cell:nth-child(3){grid-column:3;grid-row:1/3;}        /* tall right-top */
+.hp-cell:nth-child(4){grid-column:2;grid-row:2/4;}        /* tall centre-bottom */
+.hp-cell:nth-child(5){grid-column:3;grid-row:3;}          /* small bottom-right */
+.hp-cell img{width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.07);transition:transform 10s ease;}
 .hp-cell.ready img{transform:scale(1);}
-.hp-cell:hover img{transform:scale(1.03) !important;transition:transform .9s ease;}
-.hero-veil{position:absolute;bottom:0;left:0;right:0;height:140px;z-index:2;background:linear-gradient(to top,var(--cream),transparent);pointer-events:none;}
+.hp-cell:hover img{transform:scale(1.04) !important;transition:transform .8s ease;}
+.hero-veil{position:absolute;bottom:0;left:0;right:0;height:160px;z-index:2;background:linear-gradient(to top,var(--cream) 0%,transparent);pointer-events:none;}
+/* left veil for blend into hero text */
+.hero-veil-left{position:absolute;top:0;left:0;bottom:0;width:60px;z-index:2;background:linear-gradient(to right,var(--cream),transparent);pointer-events:none;}
 
 /* ── REVEAL ── */
 .reveal{opacity:0;transform:translateY(40px);transition:opacity .8s ease,transform .8s ease;}
@@ -324,6 +337,7 @@ footer small{font-size:.68rem;letter-spacing:.1em;color:rgba(255,228,196,.4);}
   <div class="hero-right">
     <div class="hero-photos" id="heroPhotos"></div>
     <div class="hero-veil"></div>
+    <div class="hero-veil-left"></div>
     <div class="hero-art" id="heroArt">
       <svg viewBox="0 0 600 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
         <rect width="600" height="900" fill="#FFE4C4"/>
@@ -864,46 +878,45 @@ function buildHeroCollage() {
   var hp = document.getElementById('heroPhotos');
   var ha = document.getElementById('heroArt');
   if (!hp) return;
-  
-  // Collect 3 crisp vertical or horizontal pieces safely from the array portfolio
-  var items = window.allPhotosData.slice(0, 3);
-  if (items.length < 3) return; // Fallback directly to original SVG geometry art if missing assets
+
+  var pool = window.allPhotosData;
+  if (!pool || pool.length < 3) return;
+
+  // Pick 5 photos, cycling through pool if needed
+  var picks = [];
+  for (var i = 0; i < 5; i++) picks.push(pool[i % pool.length]);
 
   var html = '';
-  items.forEach(function(item) {
-    html += '<div class="hp-cell"><img src="' + (item.hero || item.src) + '" alt="Daria Shevchenko Studio"></div>';
+  picks.forEach(function(item) {
+    html += '<div class="hp-cell"><img src="' + (item.hero || item.src) + '" alt="Daria Shevchenko Photography" loading="eager"></div>';
   });
   hp.innerHTML = html;
-  
-  // Reveal layer logic
+
   hp.classList.add('show');
   if (ha) ha.style.display = 'none';
 
-  // Smooth transform scaling activation 
   var cells = hp.querySelectorAll('.hp-cell');
   var loadedCount = 0;
+  var total = cells.length;
+
   cells.forEach(function(cell) {
     var img = cell.querySelector('img');
-    if (img) {
-      if (img.complete) {
-        handleCellReady(cell);
-      } else {
-        img.onload = function() { handleCellReady(cell); };
-        img.onerror = function() {
-          // If a picture fails, fallback completely to the beautiful safe abstract vector structure
-          hp.classList.remove('loaded','show');
-          if (ha) ha.style.display = 'block';
-        };
-      }
+    if (!img) return;
+    if (img.complete) {
+      handleCellReady(cell);
+    } else {
+      img.onload  = function() { handleCellReady(cell); };
+      img.onerror = function() {
+        hp.classList.remove('loaded','show');
+        if (ha) ha.style.display = 'block';
+      };
     }
   });
 
   function handleCellReady(cell) {
-    loadedCount++;
     cell.classList.add('ready');
-    if (loadedCount === 3) {
-      hp.classList.add('loaded');
-    }
+    loadedCount++;
+    if (loadedCount === total) hp.classList.add('loaded');
   }
 }
 
