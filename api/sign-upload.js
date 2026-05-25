@@ -10,25 +10,25 @@ module.exports = function(req, res) {
     return res.status(500).json({ error: 'Missing Cloudinary environment variables.' });
   }
 
-  const { password } = req.query;
+  const { password, category } = req.query;
   if (!UPLOAD_PASSWORD || password !== UPLOAD_PASSWORD) {
     return res.status(401).json({ error: 'Wrong password' });
   }
 
   const timestamp = Math.floor(Date.now() / 1000);
   const folder    = 'daria';
-  
-  // Cloudinary signatures require parameters mapped alphabetically: context -> folder -> timestamp + Secret
-  const toSign    = 'context=category=general&folder=' + folder + '&timestamp=' + timestamp + CLOUDINARY_API_SECRET;
-  
-  // Must use sha1 for Cloudinary upload API signatures
+  const cat       = (category && category.trim()) ? category.trim() : 'general';
+
+  // Cloudinary requires params in alphabetical order: context, folder, timestamp
+  const toSign    = 'context=category=' + cat + '&folder=' + folder + '&timestamp=' + timestamp + CLOUDINARY_API_SECRET;
   const signature = crypto.createHash('sha1').update(toSign).digest('hex');
 
-  res.status(200).json({ 
-    cloudName: CLOUDINARY_CLOUD_NAME, 
-    apiKey: CLOUDINARY_API_KEY, 
-    timestamp: timestamp, 
-    signature: signature, 
-    folder: folder 
+  res.status(200).json({
+    cloudName: CLOUDINARY_CLOUD_NAME,
+    apiKey:    CLOUDINARY_API_KEY,
+    timestamp,
+    signature,
+    folder,
+    category: cat
   });
 };

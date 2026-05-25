@@ -1,0 +1,10 @@
+{
+  "name": "daria-portfolio",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "vercel dev"
+  },
+  "devDependencies": {
+    "vercel": "latest"
+  }
+}
