@@ -15,7 +15,9 @@ module.exports = async function(req, res) {
 
   try {
     const auth = Buffer.from(apiKey + ':' + apiSecret).toString('base64');
+    // Added context to query so we can retrieve custom categories safely
     const url  = 'https://api.cloudinary.com/v1_1/' + cloudName +
+                 '/resources/image?prefix=daria/&type=upload&max_results=500&context=true';
                  '/resources/image?max_results=500&type=upload';
 
     const raw = await new Promise(function(resolve, reject) {
@@ -38,11 +40,19 @@ module.exports = async function(req, res) {
       const year  = d.getFullYear();
       const pid   = img.public_id;
       const base  = 'https://res.cloudinary.com/' + cloudName + '/image/upload/';
+      
+      // Pull dynamic structural context category values gracefully
+      const category = (img.context && img.context.custom && img.context.custom.category) 
+        ? img.context.custom.category 
+        : 'general';
+
       return {
+        id: img.asset_id || pid,
         thumb: base + 'q_auto,f_auto,w_600/'  + pid,
         hero:  base + 'q_auto,f_auto,w_400/'  + pid,
         full:  base + 'q_auto,f_auto,w_1600/' + pid,
         file:  base + 'q_auto,f_auto,w_1200/' + pid,
+        category: category,
         date:  month + ' ' + year
       };
     });
