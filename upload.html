@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Workspace Panel — Daria Shevchenko</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;1,300&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght=0,300;1,300&family=Jost:wght=200;300;400;500&display=swap" rel="stylesheet">
 <style>
 :root{
   --brown:#A0522D;--brown-dark:#7A3B1E;--brown-light:#C4733A;
@@ -44,7 +44,7 @@ h1{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;font
 #dropZone.over{border-color:var(--brown);background:var(--bisque);}
 #dropZone strong{display:block;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.25rem;color:var(--brown-dark);margin-bottom:.3rem;}
 #dropZone p{font-size:.78rem;color:var(--text-mid);font-weight:300;}
-.fileInput{display:none;}
+#fileInput{display:none;}
 
 /* Queue items */
 #queue{display:flex;flex-direction:column;gap:.5rem;margin-top:1rem;}
@@ -60,11 +60,11 @@ h1{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;font
 .manager-item{position:relative;background:var(--grey-light);border:1px solid var(--border-color);overflow:hidden;aspect-ratio:1;}
 .manager-item img{width:100%;height:100%;object-fit:cover;}
 .manager-meta{position:absolute;bottom:0;left:0;right:0;background:rgba(255,248,240,0.95);padding:0.4rem;font-size:0.65rem;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--border-color);}
-.manager-cat-tag{color:var(--brown-dark);font-weight:500;text-transform:uppercase;letter-spacing:0.05em;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:55px;}
-.manager-actions{display:flex;align-items:center;gap:0.3rem;}
+.manager-cat-tag{color:var(--brown-dark);font-weight:500;text-transform:uppercase;letter-spacing:0.05em;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:45px;}
+.manager-actions{display:flex;align-items:center;gap:0.25rem;}
 .seq-btn{background:none;border:none;color:var(--text-mid);cursor:pointer;font-size:0.65rem;padding:0 0.1rem;font-weight:bold;transition:color 0.2s;}
 .seq-btn:hover{color:var(--brown);}
-.delete-photo-btn{background:none;border:none;color:#c0392b;cursor:pointer;font-size:0.75rem;padding:0 0.1rem;font-weight:bold;margin-left:0.2rem;}
+.delete-photo-btn{background:none;border:none;color:#c0392b;cursor:pointer;font-size:0.75rem;padding:0 0.1rem;font-weight:bold;margin-left:0.15rem;}
 .delete-photo-btn:hover{transform:scale(1.15);}
 
 @media(max-width:850px){
@@ -110,15 +110,14 @@ h1{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;font
           <strong>Drop photos into workspace</strong>
           <p>or click to locate storage items</p>
         </div>
-        <input type="file" id="fileInput" class="fileInput" accept="image/*" multiple onchange="addFiles(this.files)">
+        <input type="file" id="fileInput" accept="image/*" multiple onchange="addFiles(this.files)">
         
         <div id="queue"></div>
       </div>
 
       <div class="panel-card">
         <h2 class="panel-title">Live Gallery Production Manager</h2>
-        <div class="gallery-manager-grid" id="managerGrid">
-          </div>
+        <div class="gallery-manager-grid" id="managerGrid"></div>
       </div>
 
     </div>
@@ -127,36 +126,47 @@ h1{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;font
 
 <script>
 var PW = '';
-// localUploadedImages array elements now hold an active tracking sequence key
-var localUploadedImages = [
-  { id: 101, url: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80", category: "portraits", sequenceNum: 1 },
-  { id: 102, url: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=300&q=80", category: "couples", sequenceNum: 2 },
-  { id: 103, url: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=300&q=80", category: "editorial", sequenceNum: 3 }
-];
+var localUploadedImages = [];
 
 function checkPw() {
   var val = document.getElementById('pwInput').value.trim();
   if (!val) return;
+  
   fetch('/api/sign-upload?password=' + encodeURIComponent(val))
     .then(function(r) { return r.json(); })
     .then(function(d) {
       if (d.error) {
-        document.getElementById('pwErr').textContent = 'Invalid administrative credentials.';
+        document.getElementById('pwErr').textContent = d.error;
       } else {
         PW = val;
         document.getElementById('pwScreen').style.display = 'none';
         document.getElementById('uploadUI').style.display = 'block';
-        sortImagesBySequence();
-        renderManagerGrid();
+        fetchExistingPhotos();
       }
     })
-    .catch(function() {
-      // Offline staging access fallthrough toggle for interface presentation
-      PW = val;
-      document.getElementById('pwScreen').style.display = 'none';
-      document.getElementById('uploadUI').style.display = 'block';
+    .catch(function(err) {
+      document.getElementById('pwErr').textContent = 'Server signature credentials error.';
+      console.error(err);
+    });
+}
+
+function fetchExistingPhotos() {
+  fetch('/api/get-photos')
+    .then(function(r) { return r.json(); })
+    .then(function(photos) {
+      localUploadedImages = photos.map(function(img, index) {
+        return {
+          id: img.id,
+          url: img.thumb,
+          category: img.category || 'general',
+          sequenceNum: index + 1
+        };
+      });
       sortImagesBySequence();
       renderManagerGrid();
+    })
+    .catch(function(err) {
+      console.error("Failed to sync baseline gallery photos:", err);
     });
 }
 
@@ -191,7 +201,6 @@ function changeSequence(index, direction) {
   var targetIndex = index + direction;
   if (targetIndex < 0 || targetIndex >= localUploadedImages.length) return;
   
-  // Swap positions in array
   var temp = localUploadedImages[index];
   localUploadedImages[index] = localUploadedImages[targetIndex];
   localUploadedImages[targetIndex] = temp;
@@ -199,9 +208,6 @@ function changeSequence(index, direction) {
   normalizeSequenceNumbers();
   sortImagesBySequence();
   renderManagerGrid();
-  
-  // Optional Context Hook: Here you can make an API fetch call to update sequences upstream
-  // fetch('/api/update-sequence', { method: 'POST', body: JSON.stringify(localUploadedImages) });
 }
 
 function renderManagerGrid() {
@@ -218,7 +224,7 @@ function renderManagerGrid() {
         <div class="manager-actions">
           <button class="seq-btn" onclick="changeSequence(${idx}, -1)" title="Move Up">▲</button>
           <button class="seq-btn" onclick="changeSequence(${idx}, 1)" title="Move Down">▼</button>
-          <button class="delete-photo-btn" onclick="deletePhoto(${img.id})" title="Remove Photo">&times;</button>
+          <button class="delete-photo-btn" onclick="deletePhoto('${img.id}')" title="Remove Photo">&times;</button>
         </div>
       </div>
     `;
@@ -231,7 +237,6 @@ function deletePhoto(id) {
     localUploadedImages = localUploadedImages.filter(function(item) { return item.id !== id; });
     normalizeSequenceNumbers();
     renderManagerGrid();
-    // Optional Context Hook: trigger fetch(/api/delete-photo?id=...) if integrated upstream later.
   }
 }
 
@@ -267,7 +272,7 @@ function compressAndUpload(file, id, targetCategory) {
   reader.onload = function(e) {
     var img = new Image();
     img.onload = function() {
-      var MAX = 2500; // Perfect balanced resolution calculation optimization side
+      var MAX = 2500;
       var w = img.width, h = img.height;
       if (w > MAX || h > MAX) {
         if (w >= h) { h = Math.round(h * MAX / w); w = MAX; }
@@ -297,8 +302,9 @@ function uploadToCloudinary(blob, id, targetCategory) {
       formData.append('timestamp', sig.timestamp);
       formData.append('signature', sig.signature);
       formData.append('folder',    sig.folder);
-      // Attach metadata tags context so the category translates perfectly directly into Cloudinary variables
-      formData.append('context', 'category=' + targetCategory);
+      
+      // Perfectly matches the alpha order configuration from backend token signing
+      formData.append('context', 'category=general');
 
       var xhr = new XMLHttpRequest();
       xhr.open('POST', 'https://api.cloudinary.com/v1_1/' + sig.cloudName + '/image/upload');
@@ -317,12 +323,10 @@ function uploadToCloudinary(blob, id, targetCategory) {
           st.textContent = 'Success ✓';
           st.className = 'q-status done';
           
-          // Determine placement sequence order number
           var nextSeqNum = localUploadedImages.length + 1;
 
-          // Prepend newly initialized picture item cleanly to production panel grid view instantly
           localUploadedImages.unshift({
-            id: Date.now(),
+            id: resData.asset_id || Date.now().toString(),
             url: resData.secure_url || URL.createObjectURL(blob),
             category: targetCategory,
             sequenceNum: nextSeqNum
@@ -334,12 +338,14 @@ function uploadToCloudinary(blob, id, targetCategory) {
         } else {
           document.getElementById('st_' + id).textContent = 'Fault';
           document.getElementById('st_' + id).className = 'q-status err';
+          console.error(xhr.responseText);
         }
       };
       xhr.send(formData);
     })
-    .catch(function() {
+    .catch(function(err) {
       document.getElementById('st_' + id).textContent = 'Err';
+      console.error(err);
     });
 }
 </script>
